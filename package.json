@@ -1,0 +1,16 @@
+{
+  "name": "ninjaguru",
+  "version": "0.0.0",
+  "description": "Dead serious browser performance inspection for ninjar gurus.",
+  "main": "build/ninjaguru.min.js",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-uglify": "~0.7.0",
+    "grunt-contrib-watch": "~0.6.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jason Ormand",
+  "license": "MIT"
+}
