@@ -1,4 +1,4 @@
-#ninjaguru {
+.ninjaguru {
   position: fixed;
   bottom: 0px;
   width: 100%;
@@ -18,5 +18,14 @@
 .ninjaguru-text {
   width: 50%;
   display: inline-block; }
+
+.ninjaguru-text-stats {
+  display: inline-block;
+  margin-right: 4em;
+  font-size: 16px;
+  padding: 20px;
+  float: left; }
+  .ninjaguru-text-stats span {
+    font-weight: bold; }
 
 /*# sourceMappingURL=ninjaguru.css.map */

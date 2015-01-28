@@ -1,7 +1,7 @@
+$prefix: '.ninjaguru';
 $primary-ui-color: #EEBF49;
 
-
-#ninjaguru {
+#{$prefix} {
   position: fixed;
   bottom: 0px;
   width: 100%;
@@ -13,14 +13,26 @@ $primary-ui-color: #EEBF49;
   font-family: monospace;
 }
 
-.ninjaguru-canvas {
+#{$prefix}-canvas {
   width: 200px;
   height: 60px;
   background: transparent;
   border: solid 1px white;
 }
 
-.ninjaguru-text {
+#{$prefix}-text {
   width: 50%;
   display: inline-block;
+}
+
+#{$prefix}-text-stats {
+  display: inline-block;
+  margin-right: 4em;
+  font-size: 16px;
+  padding: 20px;
+  float: left;
+
+  span {
+    font-weight: bold
+  }
 }
