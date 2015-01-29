@@ -1,38 +1,51 @@
 $prefix: '.ninjaguru';
 $primary-ui-color: #EEBF49;
 
+$main-ui-color: rgb(238, 191, 73);;
+
 #{$prefix} {
   position: fixed;
-  bottom: 0px;
-  width: 100%;
-  height: 60px;
-  z-index: 100;
-  background: rgba(0, 0, 0, 0.8);
-  color: $primary-ui-color;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.8);
+  min-height: 80px;
+  padding: 0 10px 10px 10px;
   box-sizing: border-box;
   font-family: monospace;
-}
-
-#{$prefix}-canvas {
-  width: 200px;
-  height: 60px;
-  background: transparent;
-  border: solid 1px white;
-}
-
-#{$prefix}-text {
-  width: 50%;
-  display: inline-block;
-}
-
-#{$prefix}-text-stats {
-  display: inline-block;
-  margin-right: 4em;
   font-size: 16px;
-  padding: 20px;
-  float: left;
 
-  span {
-    font-weight: bold
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  @media screen and (max-width: 1250px){
+    justify-content: space-around;
   }
+
+  $metric-width: 300px;
+  $metric-height: 60px;
+
+  #{$prefix}-metric {
+    height: $metric-height;
+    color: $main-ui-color;
+    width: $metric-width;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  #{$prefix}-title {
+    font-weight: bold;
+    margin-right: 1em;
+  }
+
+  #{$prefix}-canvas {
+    width: $metric-width;
+    height: $metric-height;
+    background: #000;
+    // outline: white solid 1px;
+  }
+
 }
