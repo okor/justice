@@ -27,7 +27,8 @@ rgb(36, 36, 36); // sublte grey, graph lines
   -webkit-font-smoothing: antialiased;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between; }
+  justify-content: space-between;
+  z-index: 2147483647; }
   @media (max-width: 1235px) {
     .ninjaguru {
       justify-content: space-around; } }

@@ -41,6 +41,8 @@ rgb(36, 36, 36); // sublte grey, graph lines
   flex-flow: row wrap;
   justify-content: space-between;
 
+  z-index: 2147483647;
+
   @media(max-width: 1235px) {
     justify-content: space-around;
   }

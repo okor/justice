@@ -4,16 +4,16 @@ module.exports = function(grunt) {
 
     watch: {
       files: ['lib/*', 'lib/scss/*', 'examples/index.html'],
-      tasks: ['uglify:ng', 'sass'],
+      tasks: ['sass', 'css2js:main', 'uglify:main'],
       options: {
         livereload: true,
       },
     },
 
     uglify: {
-      ng: {
+      main: {
         files: {
-          'build/ninjaguru.min.js': ['lib/ninjaguru.js']
+          'build/ninjaguru.min.js': ['lib/ninjaguru.css.js', 'lib/ninjaguru.js']
         }
       }
     },
@@ -26,13 +26,21 @@ module.exports = function(grunt) {
       }
     },
 
+    css2js: {
+      main: {
+        src: 'build/ninjaguru.css',
+        dest: 'lib/ninjaguru.css.js'
+      }
+    }
+
   });
 
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-css2js');
 
-  grunt.registerTask('default', ['uglify:ng', 'sass', 'watch']);
+  grunt.registerTask('default', ['sass', 'css2js:main', 'uglify:main', 'watch']);
 
 };
