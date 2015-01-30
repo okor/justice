@@ -27,22 +27,26 @@ rgb(36, 36, 36); // sublte grey, graph lines
   right: 0;
   background: $bg-color;
   min-height: 80px;
-  padding: 0 10px 10px 10px;
+  padding: 0 10px 30px 10px;
   box-sizing: border-box;
   // font-family: monospace;
   font-size: 16px;
   // -webkit-font-smoothing: subpixel-antialiased;
 
-     font-family:"Helvetica Neue", Arial, sans-serif;
-      font-weight:100;
-      -webkit-font-smoothing:antialiased;
+  font-family: monospace;
+  font-weight: 100;
+  -webkit-font-smoothing :antialiased;
 
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
 
-  @media screen and (max-width: 1250px){
+  @media(max-width: 1235px) {
     justify-content: space-around;
+  }
+
+  @media(min-width: 1235px) {
+    padding-bottom: 10px;
   }
 
   $metric-width: 300px;
@@ -56,7 +60,6 @@ rgb(36, 36, 36); // sublte grey, graph lines
     display: flex;
     align-items: center;
     margin-top: 10px;
-
   }
 
   #{$prefix}-title {
@@ -68,12 +71,11 @@ rgb(36, 36, 36); // sublte grey, graph lines
 
   #{$prefix}-text {
     color: rgb(241, 250, 195);
-
   }
 
   #{$prefix}-canvas {
-    width: $metric-width;
-    height: $metric-height;
+    // width: $metric-width;
+    // height: $metric-height;
     // background: #000;
     // outline: white solid 1px;
   }

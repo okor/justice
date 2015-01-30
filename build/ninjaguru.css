@@ -19,18 +19,21 @@ rgb(36, 36, 36); // sublte grey, graph lines
   right: 0;
   background: #0b0b0b;
   min-height: 80px;
-  padding: 0 10px 10px 10px;
+  padding: 0 10px 30px 10px;
   box-sizing: border-box;
   font-size: 16px;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: monospace;
   font-weight: 100;
   -webkit-font-smoothing: antialiased;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between; }
-  @media screen and (max-width: 1250px) {
+  @media (max-width: 1235px) {
     .ninjaguru {
       justify-content: space-around; } }
+  @media (min-width: 1235px) {
+    .ninjaguru {
+      padding-bottom: 10px; } }
   .ninjaguru .ninjaguru-metric {
     height: 60px;
     color: #f1fac3;
@@ -45,8 +48,5 @@ rgb(36, 36, 36); // sublte grey, graph lines
     color: #419ba3; }
   .ninjaguru .ninjaguru-text {
     color: #f1fac3; }
-  .ninjaguru .ninjaguru-canvas {
-    width: 300px;
-    height: 60px; }
 
 /*# sourceMappingURL=ninjaguru.css.map */
