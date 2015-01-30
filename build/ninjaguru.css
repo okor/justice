@@ -1,14 +1,30 @@
+/*
+rgb(65, 155, 163); // light blue default color
+
+rgb(30, 38, 40); // dark green bg
+
+rgb(233, 243, 242); // off white ?
+
+rgb(139, 47, 34); // rusty orange, wrong
+
+rgb(241, 250, 195); // light yellow
+
+rgb(36, 36, 36); // sublte grey, graph lines
+
+*/
 .ninjaguru {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: #0b0b0b;
   min-height: 80px;
   padding: 0 10px 10px 10px;
   box-sizing: border-box;
-  font-family: monospace;
   font-size: 16px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 100;
+  -webkit-font-smoothing: antialiased;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between; }
@@ -17,18 +33,20 @@
       justify-content: space-around; } }
   .ninjaguru .ninjaguru-metric {
     height: 60px;
-    color: #eebf49;
+    color: #f1fac3;
     width: 300px;
     display: inline-block;
     display: flex;
     align-items: center;
     margin-top: 10px; }
   .ninjaguru .ninjaguru-title {
-    font-weight: bold;
-    margin-right: 1em; }
+    text-transform: uppercase;
+    padding: 3px 1.5em 3px 3px;
+    color: #419ba3; }
+  .ninjaguru .ninjaguru-text {
+    color: #f1fac3; }
   .ninjaguru .ninjaguru-canvas {
     width: 300px;
-    height: 60px;
-    background: #000; }
+    height: 60px; }
 
 /*# sourceMappingURL=ninjaguru.css.map */

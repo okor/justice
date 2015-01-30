@@ -1,19 +1,41 @@
 $prefix: '.ninjaguru';
 $primary-ui-color: #EEBF49;
+$main-ui-color: rgb(241, 250, 195);
+$bg-color: rgb(11, 11, 11);
+$label-bg-color: rgb(30, 38, 40);
 
-$main-ui-color: rgb(238, 191, 73);;
+/*
+rgb(65, 155, 163); // light blue default color
+
+rgb(30, 38, 40); // dark green bg
+
+rgb(233, 243, 242); // off white ?
+
+rgb(139, 47, 34); // rusty orange, wrong
+
+rgb(241, 250, 195); // light yellow
+
+rgb(36, 36, 36); // sublte grey, graph lines
+
+*/
+
 
 #{$prefix} {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0,0,0,0.8);
+  background: $bg-color;
   min-height: 80px;
   padding: 0 10px 10px 10px;
   box-sizing: border-box;
-  font-family: monospace;
+  // font-family: monospace;
   font-size: 16px;
+  // -webkit-font-smoothing: subpixel-antialiased;
+
+     font-family:"Helvetica Neue", Arial, sans-serif;
+      font-weight:100;
+      -webkit-font-smoothing:antialiased;
 
   display: flex;
   flex-flow: row wrap;
@@ -34,18 +56,27 @@ $main-ui-color: rgb(238, 191, 73);;
     display: flex;
     align-items: center;
     margin-top: 10px;
+
   }
 
   #{$prefix}-title {
-    font-weight: bold;
-    margin-right: 1em;
+    // font-weight: bold;
+    text-transform: uppercase;
+    padding: 3px 1.5em 3px 3px;
+    color: rgb(65, 155, 163);
+  }
+
+  #{$prefix}-text {
+    color: rgb(241, 250, 195);
+
   }
 
   #{$prefix}-canvas {
     width: $metric-width;
     height: $metric-height;
-    background: #000;
+    // background: #000;
     // outline: white solid 1px;
   }
 
 }
+
