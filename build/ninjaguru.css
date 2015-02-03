@@ -12,7 +12,7 @@ rgb(241, 250, 195); // light yellow
 rgb(36, 36, 36); // sublte grey, graph lines
 
 */
-.ninjaguru {
+.HUD {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -27,9 +27,9 @@ rgb(36, 36, 36); // sublte grey, graph lines
   justify-content: space-between;
   z-index: 2147483647; }
   @media (min-width: 1235px) {
-    .ninjaguru {
+    .HUD {
       padding-bottom: 10px; } }
-  .ninjaguru .ninjaguru-metric {
+  .HUD .HUD-metric {
     height: 40px;
     color: #f1fac3;
     width: 150px;
@@ -37,13 +37,13 @@ rgb(36, 36, 36); // sublte grey, graph lines
     display: flex;
     align-items: center;
     margin-top: 10px; }
-    .ninjaguru .ninjaguru-metric.chart {
+    .HUD .HUD-metric.chart {
       width: 300px; }
-  .ninjaguru .ninjaguru-title {
+  .HUD .HUD-title {
     text-transform: uppercase;
     padding: 3px 1.5em 3px 3px;
     color: #dfdfdf; }
-  .ninjaguru .ninjaguru-text {
+  .HUD .HUD-text {
     color: #419ba3; }
 
-/*# sourceMappingURL=ninjaguru.css.map */
+/*# sourceMappingURL=HUD.css.map */

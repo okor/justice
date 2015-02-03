@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     uglify: {
       main: {
         files: {
-          'build/ninjaguru.min.js': ['lib/ninjaguru.css.js', 'lib/ninjaguru.js']
+          'build/HUD.min.js': ['lib/HUD.css.js', 'lib/HUD.js']
         }
       }
     },
@@ -21,15 +21,15 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'build/ninjaguru.css': 'lib/scss/ninjaguru.scss'
+          'build/HUD.css': 'lib/scss/HUD.scss'
         }
       }
     },
 
     css2js: {
       main: {
-        src: 'build/ninjaguru.css',
-        dest: 'lib/ninjaguru.css.js'
+        src: 'build/HUD.css',
+        dest: 'lib/HUD.css.js'
       }
     }
 
