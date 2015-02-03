@@ -29,13 +29,12 @@ rgb(36, 36, 36); // sublte grey, graph lines
   min-height: 80px;
   padding: 0 10px 30px 10px;
   box-sizing: border-box;
-  // font-family: monospace;
   font-size: 16px;
-  // -webkit-font-smoothing: subpixel-antialiased;
 
-  font-family: sans-serif;
+
+  font-family: monospace;
   font-weight: 100;
-  -webkit-font-smoothing :antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
 
   display: flex;
   flex-flow: row wrap;
@@ -65,7 +64,6 @@ rgb(36, 36, 36); // sublte grey, graph lines
   }
 
   #{$prefix}-title {
-    // font-weight: bold;
     text-transform: uppercase;
     padding: 3px 1.5em 3px 3px;
     color: rgb(65, 155, 163);

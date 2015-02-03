@@ -22,9 +22,9 @@ rgb(36, 36, 36); // sublte grey, graph lines
   padding: 0 10px 30px 10px;
   box-sizing: border-box;
   font-size: 16px;
-  font-family: sans-serif;
+  font-family: monospace;
   font-weight: 100;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: subpixel-antialiased;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
