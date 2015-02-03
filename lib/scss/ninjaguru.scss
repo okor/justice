@@ -1,7 +1,7 @@
 $prefix: '.ninjaguru';
 $primary-ui-color: #EEBF49;
 $main-ui-color: rgb(241, 250, 195);
-$bg-color: rgb(11, 11, 11);
+$bg-color: rgb(28, 28, 34);
 $label-bg-color: rgb(30, 38, 40);
 
 /*
@@ -26,15 +26,14 @@ rgb(36, 36, 36); // sublte grey, graph lines
   left: 0;
   right: 0;
   background: $bg-color;
-  min-height: 80px;
-  padding: 0 10px 30px 10px;
+  padding: 0 10px 10px 10px;
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 12px;
 
 
   font-family: monospace;
-  font-weight: 100;
-  -webkit-font-smoothing: subpixel-antialiased;
+  // font-weight: 100;
+  // -webkit-font-smoothing: subpixel-antialiased;
 
   display: flex;
   flex-flow: row wrap;
@@ -42,16 +41,16 @@ rgb(36, 36, 36); // sublte grey, graph lines
 
   z-index: 2147483647;
 
-  @media(max-width: 1235px) {
-    justify-content: space-around;
-  }
+  // @media(max-width: 1235px) {
+  //   justify-content: space-around;
+  // }
 
   @media(min-width: 1235px) {
     padding-bottom: 10px;
   }
 
-  $metric-width: 300px;
-  $metric-height: 60px;
+  $metric-width: 150px;
+  $metric-height: 40px;
 
   #{$prefix}-metric {
     height: $metric-height;
@@ -61,16 +60,20 @@ rgb(36, 36, 36); // sublte grey, graph lines
     display: flex;
     align-items: center;
     margin-top: 10px;
+
+    &.chart {
+      width: $metric-width * 2;
+    }
   }
 
   #{$prefix}-title {
     text-transform: uppercase;
     padding: 3px 1.5em 3px 3px;
-    color: rgb(65, 155, 163);
+    color: rgb(223, 223, 223);
   }
 
   #{$prefix}-text {
-    color: rgb(241, 250, 195);
+    color: rgb(65, 155, 163); //
   }
 
   #{$prefix}-canvas {
