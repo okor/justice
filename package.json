@@ -10,9 +10,6 @@
     "grunt-contrib-sass": "~0.8.1",
     "grunt-css2js": "~0.2.4"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Jason Ormand",
   "license": "MIT"
 }
