@@ -4,34 +4,34 @@ module.exports = function(grunt) {
 
     watch: {
       files: ['lib/*', 'lib/scss/*', 'examples/index.html'],
-      tasks: ['sass', 'css2js:main', 'uglify:main'],
+      tasks: ['build'],
       options: {
         livereload: true,
       },
     },
 
-    uglify: {
-      main: {
-        files: {
-          'build/HUD.min.js': ['lib/HUD.css.js', 'lib/HUD.js']
-        }
-      }
-    },
-
     sass: {
       dist: {
         files: {
-          'build/HUD.css': 'lib/scss/HUD.scss'
+          'tmp/HUD.css': 'lib/scss/HUD.scss'
         }
       }
     },
 
     css2js: {
       main: {
-        src: 'build/HUD.css',
-        dest: 'lib/HUD.css.js'
+        src: 'tmp/HUD.css',
+        dest: 'tmp/HUD.css.js'
       }
-    }
+    },
+
+    uglify: {
+      main: {
+        files: {
+          'build/HUD.min.js': ['tmp/HUD.css.js', 'lib/HUD.js']
+        }
+      }
+    },
 
   });
 
@@ -41,6 +41,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-css2js');
 
-  grunt.registerTask('default', ['sass', 'css2js:main', 'uglify:main', 'watch']);
+  grunt.registerTask('build', ['sass', 'css2js:main', 'uglify:main']);
+  grunt.registerTask('default', ['build', 'watch']);
 
 };
