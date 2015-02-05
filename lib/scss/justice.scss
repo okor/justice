@@ -1,24 +1,8 @@
-$prefix: '.HUD';
+$prefix: '.justice';
 $primary-ui-color: #EEBF49;
 $main-ui-color: rgb(241, 250, 195);
 $bg-color: rgb(28, 28, 34);
 $label-bg-color: rgb(30, 38, 40);
-
-/*
-rgb(65, 155, 163); // light blue default color
-
-rgb(30, 38, 40); // dark green bg
-
-rgb(233, 243, 242); // off white ?
-
-rgb(139, 47, 34); // rusty orange, wrong
-
-rgb(241, 250, 195); // light yellow
-
-rgb(36, 36, 36); // sublte grey, graph lines
-
-*/
-
 
 #{$prefix} {
   position: fixed;
@@ -29,21 +13,11 @@ rgb(36, 36, 36); // sublte grey, graph lines
   padding: 0 10px 10px 10px;
   box-sizing: border-box;
   font-size: 12px;
-
-
   font-family: monospace;
-  // font-weight: 100;
-  // -webkit-font-smoothing: subpixel-antialiased;
-
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-
   z-index: 2147483647;
-
-  // @media(max-width: 1235px) {
-  //   justify-content: space-around;
-  // }
 
   @media(min-width: 1235px) {
     padding-bottom: 10px;
@@ -74,13 +48,6 @@ rgb(36, 36, 36); // sublte grey, graph lines
 
   #{$prefix}-text {
     color: rgb(65, 155, 163); //
-  }
-
-  #{$prefix}-canvas {
-    // width: $metric-width;
-    // height: $metric-height;
-    // background: #000;
-    // outline: white solid 1px;
   }
 
 }

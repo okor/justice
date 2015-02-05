@@ -13,22 +13,22 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'tmp/HUD.css': 'lib/scss/HUD.scss'
+          'tmp/justice.css': 'lib/scss/justice.scss'
         }
       }
     },
 
     css2js: {
       main: {
-        src: 'tmp/HUD.css',
-        dest: 'tmp/HUD.css.js'
+        src: 'tmp/justice.css',
+        dest: 'tmp/justice.css.js'
       }
     },
 
     uglify: {
       main: {
         files: {
-          'build/HUD.min.js': ['tmp/HUD.css.js', 'lib/HUD.js']
+          'build/justice.min.js': ['tmp/justice.css.js', 'lib/justice.js']
         }
       }
     },
