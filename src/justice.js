@@ -4,7 +4,7 @@ var justice = (function(timing) {
 
 
   /////////////////////
-  //    da cache     //
+  //   dat cache     //
   /////////////////////
 
   var cache = {

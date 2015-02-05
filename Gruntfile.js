@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     watch: {
-      files: ['lib/*', 'lib/scss/*', 'examples/index.html'],
+      files: ['src/*', 'src/scss/*', 'examples/index.html'],
       tasks: ['build'],
       options: {
         livereload: true,
@@ -13,7 +13,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          'tmp/justice.css': 'lib/scss/justice.scss'
+          'tmp/justice.css': 'src/scss/justice.scss'
         }
       }
     },
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
     uglify: {
       main: {
         files: {
-          'build/justice.min.js': ['tmp/justice.css.js', 'lib/justice.js']
+          'build/justice.min.js': ['tmp/justice.css.js', 'src/justice.js']
         }
       }
     },
