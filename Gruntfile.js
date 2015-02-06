@@ -3,12 +3,14 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     watch: {
-      files: ['src/*', 'src/scss/*', 'examples/index.html'],
+      files: ['src/**', 'examples/**'],
       tasks: ['build'],
       options: {
         livereload: true,
       },
     },
+
+    clean: ['tmp', 'build'],
 
     sass: {
       dist: {
@@ -25,12 +27,31 @@ module.exports = function(grunt) {
       }
     },
 
+    includes: {
+      js: {
+        options: {
+          duplicates: false,
+          debug: true,
+          silent: false
+        },
+        files: [{
+          src: 'src/justice.js',
+          dest: 'tmp/justice.all.js',
+          includePath: 'src'
+        }],
+      }
+    },
+
     uglify: {
       main: {
         files: {
-          'build/justice.min.js': ['tmp/justice.css.js', 'src/justice.js']
+          'build/justice.min.js': ['tmp/justice.css.js', 'tmp/justice.all.js']
         }
       }
+    },
+
+    size: {
+      app: ['build/**']
     },
 
   });
@@ -40,8 +61,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-css2js');
+  grunt.loadNpmTasks('grunt-includes');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-plugin-size');
 
-  grunt.registerTask('build', ['sass', 'css2js:main', 'uglify:main']);
+  grunt.registerTask('build', ['clean', 'sass', 'css2js:main', 'includes:js', 'uglify:main', 'size']);
   grunt.registerTask('default', ['build', 'watch']);
-
 };
