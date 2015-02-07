@@ -26,14 +26,20 @@ $label-bg-color: rgb(30, 38, 40);
   $metric-width: 150px;
   $metric-height: 40px;
 
+  #{$prefix}-metric-wrap {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+  }
+
   #{$prefix}-metric {
     height: $metric-height;
     color: $main-ui-color;
-    width: $metric-width;
+    // width: $metric-width;
     display: inline-block;
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin: 10px 2em 0 0;
 
     &.chart {
       width: $metric-width * 2;
@@ -42,7 +48,7 @@ $label-bg-color: rgb(30, 38, 40);
 
   #{$prefix}-title {
     text-transform: uppercase;
-    padding: 3px 1.5em 3px 3px;
+    padding: 3px 0.5em 3px 3px;
     color: rgb(223, 223, 223);
   }
 

@@ -20,7 +20,7 @@ var justice = (function() {
       lastTextUpdate = time;
     } else if (time - lastTextUpdate > 3000) {
       lastTextUpdate = time;
-      render.text(render.utils.getTextMetrics());
+      render.text();
     }
 
     window.requestAnimationFrame(tick);

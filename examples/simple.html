@@ -38,14 +38,13 @@
 
     function someAJAX() {
       $.ajax({
-        url: "http://whoiz.herokuapp.com/lookup.json?url=jasonormand.com",
-        context: document.body
-      }).done(function() {
-        console.log(performance.getEntries().length)
-      });
+        url: "http://whoiz.herokuapp.com/lookup.json?url=jasonormand.com"
+      })
     }
 
     someAJAX();
+    setTimeout(someAJAX, 2000);
+    setTimeout(someAJAX, 4000)
   })
   </script>
 

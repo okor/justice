@@ -10,11 +10,11 @@ render.utils.getTextHTML = function(metrics) {
     textMetricsHTML.push([
       '<div class="' + prefix + '-metric" id="' + metrics[i].id + '">',
         '<span class="' + prefix + '-title">' + metrics[i].label + ': </span>',
-        '<span class="' + prefix + '-text">' + metrics[i].val + 'ms</span>',
+        '<span class="' + prefix + '-text">' + metrics[i].val + metrics[i].unitLabel + '</span>',
       '</div>'
     ].join(''))
   }
-  return textMetricsHTML;
+  return '<div id="' + prefix + '-text-metrics" class="' + prefix + '-metric-wrap">' + textMetricsHTML.join('') + '</div>';
 }
 
 render.utils.getChartHTML = function() {
@@ -29,17 +29,16 @@ render.utils.getChartHTML = function() {
 
 render.utils.getUIHTML = function(partials) {
   return [
-    '<div id="justice" class="justice">',
-      partials.join(''),
-    '</div>'
+    partials.text,
+    partials.charts,
   ].join('')
 }
 
 render.utils.getTextMetrics = function() {
   return [
-    { id: prefix + '-load',         label: 'Load',        val: getLoadTime() },
-    { id: prefix + '-complete',     label: 'Complete',    val: getDomComplete() },
-    { id: prefix + '-interactive',  label: 'Interactive', val: getDomInteractive() },
-    { id: prefix + '-requests',     label: 'Requests',    val: getNumRequests() }
+    { id: prefix + '-load',         label: 'Load',        val: getLoadTime(),       unitLabel: 'ms' },
+    { id: prefix + '-complete',     label: 'Complete',    val: getDomComplete(),    unitLabel: 'ms' },
+    { id: prefix + '-interactive',  label: 'Interactive', val: getDomInteractive(), unitLabel: 'ms'   },
+    { id: prefix + '-requests',     label: 'Requests',    val: getNumRequests(),    unitLabel: '' }
   ]
 }
