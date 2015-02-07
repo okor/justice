@@ -31,5 +31,23 @@
 
   <script type="text/javascript" src="../build/justice.mapped.min.js"></script>
 
+  <!-- loading jquery to simulate real world, post load, ajax requests -->
+  <script type="text/javascript" src="vendor/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+
+    function someAJAX() {
+      $.ajax({
+        url: "http://whoiz.herokuapp.com/lookup.json?url=jasonormand.com",
+        context: document.body
+      }).done(function() {
+        console.log(performance.getEntries().length)
+      });
+    }
+
+    someAJAX();
+  })
+  </script>
+
 </body>
 </html>
