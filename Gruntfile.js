@@ -35,7 +35,7 @@ module.exports = function(grunt) {
           silent: false
         },
         files: [{
-          src: 'src/justice.js',
+          src: 'src/js/justice.js',
           dest: 'tmp/justice.all.js',
           includePath: 'src'
         }],
@@ -43,9 +43,18 @@ module.exports = function(grunt) {
     },
 
     uglify: {
-      main: {
+      min: {
         files: {
           'build/justice.min.js': ['tmp/justice.css.js', 'tmp/justice.all.js']
+        },
+      },
+      beauty: {
+        options: {
+          beautify: true,
+          mangle: false
+        },
+        files: {
+          'build/justice.js': ['tmp/justice.css.js', 'tmp/justice.all.js']
         }
       }
     },
@@ -70,6 +79,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-shell');
 
-  grunt.registerTask('build', ['clean', 'sass', 'css2js:main', 'includes:js', 'uglify:main', 'shell:logSize']);
+  grunt.registerTask('build', ['clean', 'sass', 'css2js:main', 'includes:js', 'uglify:min', 'uglify:beauty', 'shell:logSize']);
   grunt.registerTask('default', ['build', 'watch']);
 };

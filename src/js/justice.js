@@ -7,7 +7,7 @@ var justice = (function() {
   include "justice.render.js"
 
   function setChartType(chartType) {
-    cache.chart.fpsRenderer = renderCharts[chartType];
+    cache.chart.fpsRenderer = render.chart.stream[chartType];
   }
 
   // main tick function that calls everything else
@@ -25,7 +25,7 @@ var justice = (function() {
       lastTextUpdate = time;
     } else if (time - lastTextUpdate > 3000) {
       // lastTextUpdate = time;
-      // renderTextStats();
+      // render.text();
     }
 
     window.requestAnimationFrame(tick);
@@ -37,8 +37,8 @@ var justice = (function() {
   /////////////////////
 
   function seriouslyInit() {
-    constructUI();
-    renderTextStats();
+    render.ui();
+    render.text();
     setChartType('spline'); // should be option if charts didn't suck
     window.requestAnimationFrame(tick);
   }
