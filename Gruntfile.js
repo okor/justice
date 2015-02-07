@@ -50,8 +50,13 @@ module.exports = function(grunt) {
       }
     },
 
-    size: {
-      app: ['build/**']
+    shell: {
+      options: {
+        stderr: true
+      },
+      logSize: {
+        command: 'echo `git rev-parse --short HEAD && date +"%m/%d/%y %T:%S" && stat -c%s build/justice.min.js && echo "bytes"` >> log/size-log.txt'
+      }
     },
 
   });
@@ -63,8 +68,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-css2js');
   grunt.loadNpmTasks('grunt-includes');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-plugin-size');
+  grunt.loadNpmTasks('grunt-shell');
 
-  grunt.registerTask('build', ['clean', 'sass', 'css2js:main', 'includes:js', 'uglify:main', 'size']);
+  grunt.registerTask('build', ['clean', 'sass', 'css2js:main', 'includes:js', 'uglify:main', 'shell:logSize']);
   grunt.registerTask('default', ['build', 'watch']);
 };
