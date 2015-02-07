@@ -1,57 +1,37 @@
-/////////////////////
-//   dat cache     //
-/////////////////////
-
-// need to get a better waying of syncing these values with css
-var maxWidth = 300;
-var maxHeight = 40;
-var fpsHeightScale = maxHeight / 60;
-var chartLabelOffset = 20;
-var maxHistory = maxWidth - chartLabelOffset;
+// these should all be in a settings hash
 var primaryColor = "rgb(241, 250, 195)";
-var secondaryColor = "rgb(36, 36, 36)";
+var secondaryColor = "rgb(48, 48, 48)";
 var failColor = "rgb(206, 69, 45)";
 var warnColor = "rgb(212, 202, 61)";
 var passColor = "rgb(65, 155, 163)";
-var slack = 1; // gap between data points - 1, must figure out how to make slower
+
+// need to get a better waying of syncing these values with css
+var prefix = "justice";
+var maxWidth = 300;
+var maxHeight = 40;
+
+var fpsHeightScale = maxHeight / 60;
+var chartLabelOffset = 20;
+var maxHistory = maxWidth - chartLabelOffset;
+
 var lastTextUpdate = 0;
+var tickCount = 0;
+var timing = window.performance.timing;
 
-var cache = {
+// Nodes
+var wrap = null;
+var domBarNode = null;
 
-  timing: window.performance.timing,
+// FPS
+var fpsRenderer = null;
+var dataFpsCurrent = 0;
+var dataFpsHistory = [];
+var dataFpsLastTime = null;
 
-  dom: {
-    wrap: document.createElement('div'),
-    bar: {
-      prefix: "justice",
-      node: null
-    },
-    display: {
-      text: {
-        loadTime: document.createElement('div'),
-        domComplete: document.createElement('div'),
-        domInteractive: document.createElement('div'),
-        httpRequests: document.createElement('div')
-      },
-      chart: {
-        fps: document.createElement('div'),
-        fpsCanvas: document.createElement('canvas'),
-        fpsCanvasCtx: null
-      }
-    }
-  },
+var domDisplayChartFps = null;
+var domDisplayChartFpsCanvas = null;
+var domDisplayChartFpsCanvasCtx = null;
 
-  data: {
-    fps: {
-      current: 0,
-      history: [],
-      lastTime: null
-    }
-  },
 
-  chart: {
-    fpsRenderer: null, // function
-  },
-
-  tickCount: 0
-}
+// Text
+var domDisplayTextLoadTime = null;

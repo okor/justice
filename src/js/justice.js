@@ -3,43 +3,32 @@ var justice = (function() {
 
   include "justice.cache.js"
   include "justice.collectors.js"
-  include "justice.utils.js"
   include "justice.render.js"
-
-  function setChartType(chartType) {
-    cache.chart.fpsRenderer = render.chart.stream[chartType];
-  }
 
   // main tick function that calls everything else
   function tick(time) {
-    cache.tickCount++;
+    tickCount++;
 
     trackFPS(time);
-    cache.chart.fpsRenderer(
-      cache.dom.display.chart.fpsCanvasCtx,
-      cache.dom.display.chart.fpsCanvas,
-      cache.data.fps.history
+    fpsRenderer(
+      domDisplayChartFpsCanvasCtx,
+      domDisplayChartFpsCanvas,
+      dataFpsHistory
     );
 
     if (lastTextUpdate === null) {
       lastTextUpdate = time;
     } else if (time - lastTextUpdate > 3000) {
-      // lastTextUpdate = time;
-      // render.text();
+      lastTextUpdate = time;
+      render.text(render.utils.getTextMetrics());
     }
 
     window.requestAnimationFrame(tick);
   }
 
-
-  /////////////////////
-  //   init things   //
-  /////////////////////
-
   function seriouslyInit() {
     render.ui();
-    render.text();
-    setChartType('spline'); // should be option if charts didn't suck
+    fpsRenderer = render.chart.stream['spline']; // should be option if charts didn't suck
     window.requestAnimationFrame(tick);
   }
 

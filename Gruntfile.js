@@ -44,14 +44,29 @@ module.exports = function(grunt) {
 
     uglify: {
       min: {
+        options: {
+          mangle: true
+        },
         files: {
           'build/justice.min.js': ['tmp/justice.css.js', 'tmp/justice.all.js']
         },
       },
+     minMapped: {
+        options: {
+          mangle: true,
+          sourceMap: true,
+        },
+        files: {
+          'build/justice.mapped.min.js': ['tmp/justice.css.js', 'tmp/justice.all.js']
+        },
+      },
       beauty: {
         options: {
-          beautify: true,
-          mangle: false
+          beautify: {
+            beautify: true,
+            indent_level: 2
+          },
+          mangle: false,
         },
         files: {
           'build/justice.js': ['tmp/justice.css.js', 'tmp/justice.all.js']
@@ -78,7 +93,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-includes');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks("grunt-jsbeautifier");
 
-  grunt.registerTask('build', ['clean', 'sass', 'css2js:main', 'includes:js', 'uglify:min', 'uglify:beauty', 'shell:logSize']);
+  grunt.registerTask('build', ['clean', 'sass', 'css2js:main', 'includes:js', 'uglify:min', 'uglify:minMapped', 'shell:logSize']);
   grunt.registerTask('default', ['build', 'watch']);
 };
