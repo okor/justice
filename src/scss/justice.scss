@@ -23,8 +23,8 @@ $label-bg-color: rgb(30, 38, 40);
     padding-bottom: 10px;
   }
 
-  $metric-width: 150px;
   $metric-height: 40px;
+  $metric-width: 150px;
 
   #{$prefix}-metric-wrap {
     display: flex;
@@ -35,7 +35,6 @@ $label-bg-color: rgb(30, 38, 40);
   #{$prefix}-metric {
     height: $metric-height;
     color: $main-ui-color;
-    // width: $metric-width;
     display: inline-block;
     display: flex;
     align-items: center;
@@ -53,7 +52,7 @@ $label-bg-color: rgb(30, 38, 40);
   }
 
   #{$prefix}-text {
-    color: rgb(65, 155, 163); //
+    color: rgb(65, 155, 163);
   }
 
 
