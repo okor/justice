@@ -34,6 +34,14 @@
   <!-- loading jquery to simulate real world, post load, ajax requests -->
   <script type="text/javascript" src="vendor/jquery.min.js"></script>
   <script type="text/javascript">
+  Justice.init({
+    interface: {
+      position: 'absolute',
+      placement: 'top'
+    }
+  });
+
+
   $(function() {
 
     function someAJAX() {

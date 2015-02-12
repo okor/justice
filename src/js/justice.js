@@ -1,6 +1,7 @@
 'use strict';
-var justice = (function() {
+var Justice = (function() {
 
+  include "justice.options.js"
   include "justice.cache.js"
   include "justice.collectors.js"
   include "justice.render.js"
@@ -26,24 +27,34 @@ var justice = (function() {
     window.requestAnimationFrame(tick);
   }
 
-  function seriouslyInit() {
+  function seriouslyInit(opts) {
+// 1. validate options (drop and log if not)
+// 2. merge into defaults
+// 3. verify each metric has browser api
+// 4. push each metric into queues
+//   - rolling
+//   - onetime
+// 5. render
+
+
+
+    var options = mergeOptions(opts);
+
+
     render.ui();
     fpsRenderer = render.chart.stream['spline']; // should be option if charts didn't suck
     window.requestAnimationFrame(tick);
   }
 
   return {
-    init: function() {
+    init: function(opts) {
       if (!window.performance || !window.performance.timing) return;
       if (document.readyState === 'complete') {
-        seriouslyInit();
+        seriouslyInit(opts, 'already loaded');
       } else {
-        window.onload = seriouslyInit;
+        window.onload = function() { seriouslyInit(opts) };
       }
     }
   }
 
 })();
-
-
-justice.init();
