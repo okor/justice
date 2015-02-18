@@ -27,8 +27,7 @@ render.ui = function() {
 }
 
 render.text = function() {
-  var metrics = render.utils.getTextMetrics();
-  var html = render.utils.getTextHTML(metrics);
+  var html = render.utils.getTextHTML(activeMetrics);
   var textWrapper = document.getElementById(prefix + '-text-metrics');
   textWrapper.innerHTML = html;
 }

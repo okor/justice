@@ -35,3 +35,32 @@ var domDisplayChartFpsCanvasCtx = null;
 
 // Text
 var domDisplayTextLoadTime = null;
+
+
+var defaultOptions = {
+  metrics: {
+    pageLoad: { budget: 1000 },
+    domComplete: { budget: 800 },
+    domInteractive: { budget: 200 },
+    requests: { budget: 20 }
+  },
+
+  interface: {
+    position: 'fixed',
+    placement: 'bottom'
+  }
+};
+
+var options = {};
+
+
+// TO DO: break these into text: and chart:
+var availableMetrics = {
+  pageLoad:         { id: prefix + '-load',         label: 'Load',        unitLabel: 'ms',  collector: getLoadTime        },
+  domComplete:      { id: prefix + '-complete',     label: 'Complete',    unitLabel: 'ms',  collector: getDomComplete     },
+  domInteractive:   { id: prefix + '-interactive',  label: 'Interactive', unitLabel: 'ms',  collector: getDomInteractive  },
+  requests:         { id: prefix + '-requests',     label: 'Requests',    unitLabel: '',    collector: getNumRequests     }
+}
+
+var activeMetrics = {};
+

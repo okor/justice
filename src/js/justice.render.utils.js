@@ -3,27 +3,6 @@ render.utils.cacheNodes = function() {
   domDisplayChartFpsCanvasCtx = domDisplayChartFpsCanvas.getContext('2d');
 }
 
-// var defaultOptions = {
-//   metrics: {
-//     pageLoad: { budget: 1000 },
-//     domComplete: { budget: 800 },
-//     domInteractive: { budget: 200 },
-//     requests: { budget: 20 }
-//   },
-
-//   interface: {
-//     position: 'fixed',
-//     placement: 'bottom'
-//   }
-// };
-
-var availableMetrics = {
-  pageLoad:         { id: prefix + '-load',         label: 'Load',        unitLabel: 'ms',  collector: getLoadTime       },
-  domComplete:      { id: prefix + '-complete',     label: 'Complete',    unitLabel: 'ms',  collector: getDomComplete     },
-  domInteractive:   { id: prefix + '-interactive',  label: 'Interactive', unitLabel: 'ms',  collector: getDomInteractive  },
-  requests:         { id: prefix + '-requests',     label: 'Requests',    unitLabel: '',    collector: getNumRequests     }
-}
-
 function getMetricRatingClass(metricValue, metricBudget) {
   var rating = '';
 
@@ -53,8 +32,8 @@ function prerenderSingleTextMetric(metricKey, metric, budget) {
 render.utils.getTextHTML = function(metrics) {
   var textMetricsHTML = [];
 
-  for (var k in availableMetrics ) {
-    var html = prerenderSingleTextMetric( k, availableMetrics[k], options.metrics[k].budget );
+  for (var k in activeMetrics ) {
+    var html = prerenderSingleTextMetric( k, activeMetrics[k], options.metrics[k].budget );
     textMetricsHTML.push(html);
   }
 
@@ -71,21 +50,27 @@ render.utils.getChartHTML = function() {
 }
 
 
-render.utils.getUIHTML = function(partials) {
-  return [
-    partials.text,
-    partials.charts,
-  ].join('')
-}
+// var defaultOptions = {
+//   metrics: {
+//     pageLoad: { budget: 1000 },
+//     domComplete: { budget: 800 },
+//     domInteractive: { budget: 200 },
+//     requests: { budget: 20 }
+//   },
 
-render.utils.getTextMetrics = function() {
+//   interface: {
+//     position: 'fixed',
+//     placement: 'bottom'
+//   }
+// };
 
 
+// TODO: remove all data munging from this area
+// put in a completely seperate thing
+// this shit should only handle rendering
+// this shit should not access non-local variables (pass in all the things)
+// anything called a "utils" should
+  // not access external data
+  // return a helpful value
+  // get<SomeThing>
 
-  return [
-    { metricKey: 'pageLoad', id: prefix + '-load',         label: 'Load',        val: getLoadTime(),       unitLabel: 'ms' },
-    { metricKey: 'domComplete', id: prefix + '-complete',     label: 'Complete',    val: getDomComplete(),    unitLabel: 'ms' },
-    { metricKey: 'domInteractive', id: prefix + '-interactive',  label: 'Interactive', val: getDomInteractive(), unitLabel: 'ms'   },
-    { metricKey: 'requests', id: prefix + '-requests',     label: 'Requests',    val: getNumRequests(),    unitLabel: '' }
-  ]
-}

@@ -1,8 +1,8 @@
 'use strict';
 var Justice = (function() {
 
-  include "justice.options.js"
   include "justice.cache.js"
+  include "justice.mungers.js"
   include "justice.collectors.js"
   include "justice.render.js"
 
@@ -28,19 +28,19 @@ var Justice = (function() {
   }
 
   function seriouslyInit(opts) {
-// 1. validate options (drop and log if not)
-// 2. merge options into defaults
-// 3. verify each metric has browser api
-// 4. push each metric into queues
-//   - rolling
-//   - onetime
-// 5. render
+
+    // 4. push each metric into queues
+    //   - rolling
+    //   - onetime
+    // 5. render
 
 
-
+    // merge options
+    // TODO: change this to a setter
     options = mergeOptions(opts);
 
-    console.log(options)
+    setActiveMetrics(options, activeMetrics, availableMetrics);
+
 
     render.ui();
     fpsRenderer = render.chart.stream['spline']; // should be option if charts didn't suck

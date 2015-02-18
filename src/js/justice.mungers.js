@@ -1,19 +1,3 @@
-var options = {};
-
-var defaultOptions = {
-  metrics: {
-    pageLoad: { budget: 1000 },
-    domComplete: { budget: 800 },
-    domInteractive: { budget: 200 },
-    requests: { budget: 20 }
-  },
-
-  interface: {
-    position: 'fixed',
-    placement: 'bottom'
-  }
-};
-
 function mergeOptions(userOpts) {
   var mergedOptions = {};
   var userOpts = userOpts || {};
@@ -27,4 +11,11 @@ function mergeOptions(userOpts) {
   }
 
   return mergedOptions;
+}
+
+
+function setActiveMetrics(options, activeMetrics, availableMetrics) {
+  for (var k in options.metrics) {
+    activeMetrics[k] = availableMetrics[k];
+  }
 }
