@@ -21,7 +21,7 @@ var Justice = (function() {
       lastTextUpdate = time;
     } else if (time - lastTextUpdate > 3000) {
       lastTextUpdate = time;
-      render.text();
+      renderText();
     }
 
     window.requestAnimationFrame(tick);
@@ -42,8 +42,8 @@ var Justice = (function() {
     setActiveMetrics(options, activeMetrics, availableMetrics);
 
 
-    render.ui();
-    fpsRenderer = render.chart.stream['spline']; // should be option if charts didn't suck
+    renderUI();
+    fpsRenderer = getFpsRenderer(options.chartType);
     window.requestAnimationFrame(tick);
   }
 

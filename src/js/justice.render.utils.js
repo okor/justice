@@ -1,8 +1,3 @@
-render.utils.cacheNodes = function() {
-  domDisplayChartFpsCanvas = document.getElementById(prefix + '-fps')
-  domDisplayChartFpsCanvasCtx = domDisplayChartFpsCanvas.getContext('2d');
-}
-
 function getMetricRatingClass(metricValue, metricBudget) {
   var rating = '';
 
@@ -17,7 +12,7 @@ function getMetricRatingClass(metricValue, metricBudget) {
   return rating;
 }
 
-function prerenderSingleTextMetric(metricKey, metric, budget) {
+function getSingleTextMetricHTML(metricKey, metric, budget) {
   var metricValue = metric.collector();
   var ratingClass = getMetricRatingClass(metricValue, budget);
 
@@ -29,18 +24,18 @@ function prerenderSingleTextMetric(metricKey, metric, budget) {
   ].join('');
 }
 
-render.utils.getTextHTML = function(metrics) {
+function getAllTextMetricsHTML(metrics) {
   var textMetricsHTML = [];
 
   for (var k in activeMetrics ) {
-    var html = prerenderSingleTextMetric( k, activeMetrics[k], options.metrics[k].budget );
+    var html = getSingleTextMetricHTML( k, activeMetrics[k], options.metrics[k].budget );
     textMetricsHTML.push(html);
   }
 
   return '<div id="' + prefix + '-text-metrics" class="' + prefix + '-metric-wrap">' + textMetricsHTML.join('') + '</div>';
 }
 
-render.utils.getChartHTML = function() {
+function getAllChartMetricsHTML() {
   return [
     '<div class="' + prefix + '-metric chart">',
       '<span class="' + prefix + '-title">FPS: </span>',
@@ -61,7 +56,9 @@ render.utils.getChartHTML = function() {
 //   interface: {
 //     position: 'fixed',
 //     placement: 'bottom'
-//   }
+//   },
+//
+//   chartType: 'spline'
 // };
 
 

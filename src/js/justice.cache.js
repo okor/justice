@@ -48,7 +48,9 @@ var defaultOptions = {
   interface: {
     position: 'fixed',
     placement: 'bottom'
-  }
+  },
+
+  chartType: 'spline'
 };
 
 var options = {};

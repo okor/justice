@@ -2,16 +2,17 @@
 // DOM interaction //
 /////////////////////
 
-var render = {};
-    render.chart = {};
-    render.chart.stream = {};
-    render.utils = {};
-
 include "justice.render.utils.js"
 include "justice.render.chart.js"
 
 
-render.ui = function() {
+function cacheLookups() {
+  domDisplayChartFpsCanvas = document.getElementById(prefix + '-fps')
+  domDisplayChartFpsCanvasCtx = domDisplayChartFpsCanvas.getContext('2d');
+}
+
+
+function renderUI() {
   wrap = document.createElement('div');
   wrap.id = prefix;
   wrap.classList.add(prefix)
@@ -19,15 +20,15 @@ render.ui = function() {
   wrap = document.getElementById(prefix)
 
   wrap.innerHTML = [
-    render.utils.getTextHTML(),
-    render.utils.getChartHTML()
+    getAllTextMetricsHTML(),
+    getAllChartMetricsHTML()
   ].join('');
 
-  render.utils.cacheNodes();
+  cacheLookups();
 }
 
-render.text = function() {
-  var html = render.utils.getTextHTML(activeMetrics);
+function renderText() {
+  var html = getAllTextMetricsHTML(activeMetrics);
   var textWrapper = document.getElementById(prefix + '-text-metrics');
   textWrapper.innerHTML = html;
 }
