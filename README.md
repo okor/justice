@@ -1,6 +1,7 @@
 Justice.js
 ==================================================
-The goal of this project it to provide insight into the performance of a webpage.
+The goal of this project it to provide insight into the performance of a webpage. Justice will create an on page widget that displays various performance metrics, including a streaming fps meter.
+![ScreenShot](http://i.imgur.com/zKaj6fD.png)
 
 
 #### Core Values:
