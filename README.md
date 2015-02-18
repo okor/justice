@@ -14,7 +14,7 @@ The goal of this project it to provide insight into the performance of a webpage
 #### Core Functionality:
   - Load times
   - FPS
-  - works in modern browsers + graceful failure
+  - works in modern browsers + graceful failure [TODO]
 
 
 #### Roadmap
