@@ -34,26 +34,46 @@
   <!-- loading jquery to simulate real world, post load, ajax requests -->
   <script type="text/javascript" src="vendor/jquery.min.js"></script>
   <script type="text/javascript">
-  Justice.init({
-    interface: {
-      position: 'absolute',
-      placement: 'top'
-    }
-  });
+    Justice.init({
+      metrics: {
+        pageLoad: { budget: 200 },
+        domComplete: { budget: 800 },
+        domInteractive: { budget: 200 },
+        requests: { budget: 6 }
+      },
+
+      interface: {
+        position: 'fixed',
+        placement: 'bottom'
+      }
+    });
 
 
-  $(function() {
+    // Justice.init({
+    //   interface: {
+    //     position: 'absolute',
+    //     placement: 'top'
+    //   }
+    // });
 
-    function someAJAX() {
-      $.ajax({
-        url: "http://whoiz.herokuapp.com/lookup.json?url=jasonormand.com"
-      })
-    }
+    // Justice.init();
 
-    someAJAX();
-    setTimeout(someAJAX, 2000);
-    setTimeout(someAJAX, 4000)
-  })
+  </script>
+
+
+  <script type="text/javascript">
+    $(function() {
+
+      function someAJAX() {
+        $.ajax({
+          url: "http://whoiz.herokuapp.com/lookup.json?url=jasonormand.com"
+        })
+      }
+
+      someAJAX();
+      setTimeout(someAJAX, 2000);
+      setTimeout(someAJAX, 4000)
+    })
   </script>
 
 </body>

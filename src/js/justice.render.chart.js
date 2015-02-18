@@ -32,7 +32,7 @@ render.chart.stream.spline = function(ctx, canvas, data) {
 
 render.chart.labels = function(ctx) {
   var fontSize = 10;
-  ctx.font = fontSize + "px sans-serif";
+  ctx.font = "600 " + fontSize + "px sans-serif";
   // no
   ctx.fillStyle = failColor;
   ctx.fillText(0, 0, maxHeight);

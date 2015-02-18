@@ -29,7 +29,7 @@ var Justice = (function() {
 
   function seriouslyInit(opts) {
 // 1. validate options (drop and log if not)
-// 2. merge into defaults
+// 2. merge options into defaults
 // 3. verify each metric has browser api
 // 4. push each metric into queues
 //   - rolling
@@ -38,8 +38,9 @@ var Justice = (function() {
 
 
 
-    var options = mergeOptions(opts);
+    options = mergeOptions(opts);
 
+    console.log(options)
 
     render.ui();
     fpsRenderer = render.chart.stream['spline']; // should be option if charts didn't suck

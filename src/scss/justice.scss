@@ -1,8 +1,10 @@
 $prefix: '.justice';
-$primary-ui-color: #EEBF49;
-$main-ui-color: rgb(241, 250, 195);
+
 $bg-color: rgb(28, 28, 34);
-$label-bg-color: rgb(30, 38, 40);
+$label-color: rgb(223, 223, 223);
+$pass-color: rgb(65, 155, 163);
+$warn-color: rgb(212, 202, 61);
+$fail-color: rgb(206, 69, 45);
 
 #{$prefix} {
   position: fixed;
@@ -34,7 +36,6 @@ $label-bg-color: rgb(30, 38, 40);
 
   #{$prefix}-metric {
     height: $metric-height;
-    color: $main-ui-color;
     display: inline-block;
     display: flex;
     align-items: center;
@@ -48,13 +49,25 @@ $label-bg-color: rgb(30, 38, 40);
   #{$prefix}-title {
     text-transform: uppercase;
     padding: 3px 0.5em 3px 3px;
-    color: rgb(223, 223, 223);
+    color: $label-color;
   }
 
   #{$prefix}-text {
-    color: rgb(65, 155, 163);
+    color: $label-color;
+    font-weight: 600;
   }
 
+  #{$prefix}-text.pass {
+    color: $pass-color;
+  }
+
+  #{$prefix}-text.warn {
+    color: $warn-color;
+  }
+
+  #{$prefix}-text.fail {
+    color: $fail-color;
+  }
 
 }
 

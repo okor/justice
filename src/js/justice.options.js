@@ -13,19 +13,10 @@ var defaultOptions = {
     placement: 'bottom'
   }
 };
-// A list of valid metric types
-var dictionary = [
-  'pageLoad',
-  'domComplete',
-  'domInteractive',
-  'requests',
-  'fps'
-];
-
 
 function mergeOptions(userOpts) {
   var mergedOptions = {};
-  if (!userOpts) return; // use default options
+  var userOpts = userOpts || {};
 
   for (var k in defaultOptions) {
     mergedOptions[k] = defaultOptions[k];
