@@ -6,6 +6,28 @@ $pass-color: rgb(65, 155, 163);
 $warn-color: rgb(212, 202, 61);
 $fail-color: rgb(206, 69, 45);
 
+$container-padding: 10px;
+$metric-height:     40px;
+$metric-width:      150px;
+
+@mixin crossBrowserTransform($value) {
+  -webkit-transform: $value;
+  -moz-transform:    $value;
+  -ms-transform:     $value;
+  -o-transform:      $value;
+  transform:         $value;
+}
+
+@mixin crossBrowserTransition($value) {
+  -webkit-transition: $value;
+  -moz-transition:    $value;
+  -ms-transition:     $value;
+  -o-transition:      $value;
+  transition:         $value;
+}
+
+
+
 #{$prefix} {
   position: fixed;
   bottom: 0;
@@ -21,12 +43,16 @@ $fail-color: rgb(206, 69, 45);
   justify-content: space-between;
   z-index: 2147483647;
 
+  @include crossBrowserTransition(400ms ease-in-out);
+
   @media(min-width: 1235px) {
-    padding-bottom: 10px;
+    padding-bottom: $container-padding;
   }
 
-  $metric-height: 40px;
-  $metric-width: 150px;
+  &.closed {
+    @include crossBrowserTransform(translateY(100%));
+  }
+
 
   #{$prefix}-metric-wrap {
     display: flex;
@@ -39,7 +65,7 @@ $fail-color: rgb(206, 69, 45);
     display: inline-block;
     display: flex;
     align-items: center;
-    margin: 10px 2em 0 0;
+    margin: 10px 10px 0 0;
 
     &.chart {
       width: $metric-width * 2;
@@ -69,5 +95,97 @@ $fail-color: rgb(206, 69, 45);
     color: $fail-color;
   }
 
+  #{$prefix}-toggle {
+    width: 20px;
+    height: 20px;
+    background-color: $bg-color;
+    position: absolute;
+    right: 0;
+    top: -20px;
+    opacity: 0.5;
+    border-top-left-radius: 50%;
+
+    @media
+    only screen and (-webkit-min-device-pixel-ratio: 1.1),
+    only screen and (   min--moz-device-pixel-ratio: 1.1),
+    only screen and (     -o-min-device-pixel-ratio: 1.1/1),
+    only screen and (        min-device-pixel-ratio: 1.1) {
+      width: 40px;
+      height: 40px;
+      top: -40px;
+    }
+
+    @include crossBrowserTransition(400ms ease-in-out);
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 50%;
+      border-radius: 100%;
+      margin: 5px;
+      background-color: $label-color;
+
+      @include crossBrowserTransition(400ms ease-in-out);
+
+      @media
+      only screen and (-webkit-min-device-pixel-ratio: 1.1),
+      only screen and (   min--moz-device-pixel-ratio: 1.1),
+      only screen and (     -o-min-device-pixel-ratio: 1.1/1),
+      only screen and (        min-device-pixel-ratio: 1.1) {
+        margin: 10px;
+      }
+    }
+  }
+
+  &.closed {
+    #{$prefix}-toggle {
+      opacity: 1;
+
+      &:after {
+        background-color: $pass-color;
+      }
+    }
+  }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -20,11 +20,13 @@ function renderUI() {
   wrap = document.getElementById(prefix)
 
   wrap.innerHTML = [
+    '<div id="' + prefix + '-toggle" class="' + prefix + '-toggle"></div>',
     getAllTextMetricsHTML(),
     getAllChartMetricsHTML()
   ].join('');
 
   cacheLookups();
+  attachListeners();
 }
 
 function renderText() {
@@ -32,3 +34,17 @@ function renderText() {
   var textWrapper = document.getElementById(prefix + '-text-metrics');
   textWrapper.innerHTML = html;
 }
+
+function attachListeners() {
+  document.getElementById('justice-toggle').onclick = function() {
+    var e = document.getElementById('justice');
+
+    if (e.className.match(' closed')) {
+      e.className = e.className.replace(' closed', '')
+    } else {
+      e.className += ' closed';
+    }
+
+  }
+}
+
