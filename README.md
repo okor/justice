@@ -5,7 +5,7 @@ The goal of this project it to provide insight into the performance of a webpage
 ![ScreenShot](http://i.imgur.com/zKaj6fD.png)
 
 
-## Using Justice
+## Use
 Simple
 ```
 <script type="text/javascript" src="../build/justice.mapped.min.js"></script>
@@ -30,6 +30,19 @@ With options
     });
 </script>
 ```
+
+## Develop
+The default grunt process will watch files for changes and handle builds. I keep examples/simple.html open in a browser, which will automatically be refreshed on build.
+```
+npm install
+grunt
+```
+I like to keep an eye on fill size, so you can additionally watch that.
+```
+watch tail log/size-log.txt
+```
+
+
 
 #### Core Values:
   - Easily embeddable
