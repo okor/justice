@@ -27,7 +27,9 @@ function renderUI() {
     getAllChartMetricsHTML()
   ].join('');
 
-  cacheLookups();
+  if (options.showFPS) {
+    cacheLookups();
+  }
   attachListeners();
 }
 

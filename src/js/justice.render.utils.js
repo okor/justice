@@ -36,12 +36,14 @@ function getAllTextMetricsHTML(metrics) {
 }
 
 function getAllChartMetricsHTML() {
-  return [
+  var metricHTML = !options.showFPS ? '' : [
     '<div class="' + prefix + '-metric chart">',
       '<span class="' + prefix + '-title">FPS: </span>',
       '<canvas id="' + prefix + '-fps" class="' + prefix + '-canvas" height="' + maxHeight + '" width="' + maxWidth + '"></canvas>',
     '</div>'
   ].join('');
+
+  return metricHTML;
 }
 
 

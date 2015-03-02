@@ -50,7 +50,8 @@ var defaultOptions = {
     placement: 'bottom'
   },
 
-  chartType: 'spline'
+  chartType: 'spline',
+  showFPS: true
 };
 
 var options = {};

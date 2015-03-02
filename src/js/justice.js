@@ -10,12 +10,14 @@ var Justice = (function() {
   function tick(time) {
     tickCount++;
 
-    trackFPS(time);
-    fpsRenderer(
-      domDisplayChartFpsCanvasCtx,
-      domDisplayChartFpsCanvas,
-      dataFpsHistory
-    );
+    if (options.showFPS) {
+      trackFPS(time);
+      fpsRenderer(
+        domDisplayChartFpsCanvasCtx,
+        domDisplayChartFpsCanvas,
+        dataFpsHistory
+      );
+    }
 
     if (lastTextUpdate === null) {
       lastTextUpdate = time;
