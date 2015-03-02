@@ -13,9 +13,11 @@ function cacheLookups() {
 
 
 function renderUI() {
+  var stateClass = getState();
   wrap = document.createElement('div');
   wrap.id = prefix;
-  wrap.classList.add(prefix)
+  wrap.classList.add(prefix);
+  wrap.classList.add(stateClass);
   document.body.appendChild(wrap);
   wrap = document.getElementById(prefix)
 
@@ -29,22 +31,37 @@ function renderUI() {
   attachListeners();
 }
 
+
 function renderText() {
   var html = getAllTextMetricsHTML(activeMetrics);
   var textWrapper = document.getElementById(prefix + '-text-metrics');
   textWrapper.innerHTML = html;
 }
 
+
 function attachListeners() {
-  document.getElementById('justice-toggle').onclick = function() {
-    var e = document.getElementById('justice');
+  document.getElementById(prefix + '-toggle').onclick = function() {
+    var e = document.getElementById(prefix);
 
     if (e.className.match(' closed')) {
       e.className = e.className.replace(' closed', '')
+      setState('open');
     } else {
       e.className += ' closed';
+      setState('closed')
     }
 
   }
 }
 
+
+function setState(state) {
+  if (!window.localStorage) return;
+  window.localStorage.setItem(prefix + '-state', state);
+}
+
+
+function getState() {
+  if (!window.localStorage) return;
+  return window.localStorage.getItem(prefix + '-state') || '';
+}

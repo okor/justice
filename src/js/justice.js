@@ -28,20 +28,8 @@ var Justice = (function() {
   }
 
   function seriouslyInit(opts) {
-
-    // 4. push each metric into queues
-    //   - rolling
-    //   - onetime
-    // 5. render
-
-
-    // merge options
-    // TODO: change this to a setter
     options = mergeOptions(opts);
-
     setActiveMetrics(options, activeMetrics, availableMetrics);
-
-
     renderUI();
     fpsRenderer = getFpsRenderer(options.chartType);
     window.requestAnimationFrame(tick);
