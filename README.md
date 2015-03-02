@@ -46,6 +46,7 @@ watch tail log/size-log.txt
 ## Contribute
 Pull requests are always welcome. Before you plan a PR, please ensure the values and functionality listed below will be maintained with your PR.
 
+Checkout the to do list: https://waffle.io/okor/justice
 
 #### Core Values:
   - Easily embeddable
