@@ -65,5 +65,5 @@ function setState(state) {
 
 function getState() {
   if (!window.localStorage) return;
-  return window.localStorage.getItem(prefix + '-state') || '';
+  return window.localStorage.getItem(prefix + '-state') || 'open';
 }
