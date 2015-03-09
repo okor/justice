@@ -56,7 +56,8 @@
 
       function someAJAX() {
         $.ajax({
-          url: "http://whoiz.herokuapp.com/lookup.json?url=jasonormand.com"
+          url: "http://whoiz.herokuapp.com/lookup.json?url=jasonormand.com",
+          crossDomain: true
         })
       }
 
