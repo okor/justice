@@ -56,9 +56,9 @@
 
       function someAJAX() {
         $.ajax({
-          url: "http://whoiz.herokuapp.com/lookup.json?url=jasonormand.com",
-          crossDomain: true
-        })
+          url: 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.js',
+          dataType: "script"
+        });
       }
 
       someAJAX();
