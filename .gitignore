@@ -2,3 +2,4 @@ TODO.txt
 node_modules
 .sass-cache
 tmp/*
+log/*
