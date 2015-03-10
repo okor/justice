@@ -7,6 +7,9 @@ The goal of this project it to provide insight into the performance of a webpage
 
 ** Justice is under active development and the API may change. **
 
+[> DEMO <](http://okor.github.io/justice/)
+===
+
 ## Use
 Simple
 ```
