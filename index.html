@@ -22,11 +22,50 @@
       display: block;
       color: white;
       padding: 10px;
-      width: 400px;
+    }
+    .main {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    pre {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+
+
     }
   </style>
 
-  <h1>justice.js</h1>
+
+
+  <div class="main">
+    <h1>justice.js</h1>
+
+    <h3>How to use</h1>
+    <pre>
+      &lt;script type=&quot;text/javascript&quot; src=&quot;justice.min.js&quot;&gt;&lt;/script&gt;
+      &lt;script type=&quot;text/javascript&quot;&gt;
+        Justice.init();
+      &lt;/script&gt;
+    </pre>
+
+    <h3>How to use, with options</h1>
+    <pre>
+      &lt;script type=&quot;text/javascript&quot; src=&quot;justice.min.js&quot;&gt;&lt;/script&gt;
+      &lt;script type=&quot;text/javascript&quot;&gt;
+        Justice.init({
+          metrics: {
+            pageLoad: { budget: 800 },
+            domComplete: { budget: 600 },
+            domInteractive: { budget: 400 },
+            requests: { budget: 6 }
+          },
+          showFPS: true,
+          chartType: 'spline'
+        });
+      &lt;/script&gt;
+    </pre>
+  </div>
 
   <script type="text/javascript" src="justice.min.js"></script>
 
@@ -35,18 +74,14 @@
   <script type="text/javascript">
     Justice.init({
       metrics: {
-        pageLoad: { budget: 200 },
-        domComplete: { budget: 800 },
-        domInteractive: { budget: 200 },
+        pageLoad: { budget: 800 },
+        domComplete: { budget: 600 },
+        domInteractive: { budget: 400 },
         requests: { budget: 6 }
       },
-
       showFPS: true,
       chartType: 'spline'
     });
-
-    // Justice.init();
-
   </script>
 
 
