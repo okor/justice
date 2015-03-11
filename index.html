@@ -9,29 +9,38 @@
 
   <style type="text/css">
     body {
-      background-color: rgb(187, 187, 187);
+      background-color: white;
       font-family: monospace;
-    }
-    h1 {
-
-      font-weight: 900;
-      text-transform: uppercase;
-      font-size: 60px;
-      margin: 100px auto;
-      text-align: center;
-      background-color: rgb(65, 155, 163);
-      display: block;
-      color: white;
-      padding: 10px;
+      padding-bottom: 80px;
     }
     .main {
       max-width: 600px;
       margin: 0 auto;
     }
+    h1 {
+      font-weight: 900;
+      font-size: 60px;
+      margin: 40px auto;
+      text-align: center;
+      display: block;
+      padding: 10px;
+      font-family: monospace;
+    }
+
     pre {
-      background-color: white;
+      background-color: black;
       padding: 10px;
       border-radius: 5px;
+      color: white;
+      line-height: 1.4em;
+    }
+    p {
+      font-weight: bold;
+      margin-top: 4em;
+    }
+    span {
+      text-align: center;
+      display: block;
     }
   </style>
 
@@ -40,30 +49,35 @@
   <div class="main">
     <h1>justice.js</h1>
 
-    <p>How to use</p>
-    <pre>
-      &lt;script type=&quot;text/javascript&quot; src=&quot;justice.min.js&quot;&gt;&lt;/script&gt;
-      &lt;script type=&quot;text/javascript&quot;&gt;
-        Justice.init();
-      &lt;/script&gt;
-    </pre>
+    <span>
+      <a href="https://github.com/okor/justice">https://github.com/okor/justice</a>
+      | <a href="https://twitter.com/okor">@okor</a>
+    </span>
 
-    <p>How to use, with options</p>
-    <pre>
-      &lt;script type=&quot;text/javascript&quot; src=&quot;justice.min.js&quot;&gt;&lt;/script&gt;
-      &lt;script type=&quot;text/javascript&quot;&gt;
-        Justice.init({
-          metrics: {
-            pageLoad: { budget: 800 },
-            domComplete: { budget: 600 },
-            domInteractive: { budget: 400 },
-            requests: { budget: 6 }
-          },
-          showFPS: true,
-          chartType: 'spline'
-        });
-      &lt;/script&gt;
-    </pre>
+<p>How to use</p>
+<pre>
+  &lt;script type=&quot;text/javascript&quot; src=&quot;justice.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;
+    Justice.init();
+  &lt;/script&gt;
+</pre>
+
+<p>With options</p>
+<pre>
+  &lt;script type=&quot;text/javascript&quot; src=&quot;justice.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;
+    Justice.init({
+      metrics: {
+        pageLoad: { budget: 800 },
+        domComplete: { budget: 600 },
+        domInteractive: { budget: 400 },
+        requests: { budget: 6 }
+      },
+      showFPS: true,
+      chartType: 'spline'
+    });
+  &lt;/script&gt;
+</pre>
   </div>
 
   <script type="text/javascript" src="justice.min.js"></script>
