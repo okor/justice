@@ -10,54 +10,104 @@
 
   <style type="text/css">
     body {
-      background-color: rgb(187, 187, 187);
+      background-color: white;
+      font-family: monospace;
+      padding-bottom: 80px;
+    }
+    .main {
+      max-width: 600px;
+      margin: 0 auto;
     }
     h1 {
-      font-family: monospace;
       font-weight: 900;
-      text-transform: uppercase;
       font-size: 60px;
-      margin: 100px auto;
+      margin: 40px auto;
       text-align: center;
-      background-color: rgb(65, 155, 163);
       display: block;
-      color: white;
       padding: 10px;
-      width: 400px;
+      font-family: monospace;
+    }
+
+    pre {
+      background-color: black;
+      padding: 10px;
+      border-radius: 5px;
+      color: white;
+      line-height: 1.4em;
+    }
+    p {
+      font-weight: bold;
+      margin-top: 4em;
+    }
+    span {
+      text-align: center;
+      display: block;
     }
   </style>
 
-  <h1>justice.js</h1>
+
+
+  <div class="main">
+    <h1>justice.js</h1>
+
+    <span>
+      <a href="https://github.com/okor/justice">github.com/okor/justice</a>
+      | <a href="https://twitter.com/okor">@okor</a>
+    </span>
+
+<p>How to use</p>
+<pre>
+  &lt;script type=&quot;text/javascript&quot; src=&quot;justice.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;
+    Justice.init();
+  &lt;/script&gt;
+</pre>
+
+<p>With options</p>
+<pre>
+  &lt;script type=&quot;text/javascript&quot; src=&quot;justice.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot;&gt;
+    Justice.init({
+      metrics: {
+        pageLoad: { budget: 800 },
+        domComplete: { budget: 600 },
+        domInteractive: { budget: 400 },
+        requests: { budget: 6 }
+      },
+      showFPS: true,
+      chartType: 'spline'
+    });
+  &lt;/script&gt;
+</pre>
+  </div>
 
   <script type="text/javascript" src="../build/justice.mapped.min.js"></script>
 
   <!-- loading jquery to simulate real world, post load, ajax requests -->
-  <script type="text/javascript" src="vendor/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript">
     Justice.init({
       metrics: {
-        pageLoad: { budget: 200 },
-        domComplete: { budget: 800 },
-        domInteractive: { budget: 200 },
+        pageLoad: { budget: 800 },
+        domComplete: { budget: 600 },
+        domInteractive: { budget: 400 },
         requests: { budget: 6 }
       },
-
       showFPS: true,
-      chartType: 'spline' // Math.random() >= 0.5 ? 'spline' : 'dots' // randomize chart type
+      chartType: 'spline'
     });
-
-    // Justice.init();
-
   </script>
 
 
   <script type="text/javascript">
+    // simulating some ajax requests that might occur on a real site
     $(function() {
 
       function someAJAX() {
         $.ajax({
-          url: "http://whoiz.herokuapp.com/lookup.json?url=jasonormand.com"
-        })
+          url: 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.js',
+          dataType: "script"
+        });
       }
 
       someAJAX();
