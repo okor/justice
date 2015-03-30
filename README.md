@@ -1,14 +1,32 @@
 Justice.js
 ==================================================
-The goal of this project it to provide insight into the performance of a webpage. Justice will create an on page widget that displays various performance metrics, including a streaming fps meter.
-
 ![ScreenShot](http://i.imgur.com/zKaj6fD.png)
+Justice will create an on page toolbar that displays page timing metrics and a streaming fps meter. Budgets are also supported for timing metrics.
+[> DEMO <](http://okor.github.io/justice/)
+======
+
+Budget results are color coded based on budgets:
+  - Over budget:  Red
+  - > 50% budget: Yellow
+  - Under budget: Green
+
+The FPS meter does not support budgets at this time but does color code the spline (or optional dot type) chart, assuming a goal of 60 FPS.
+
+The "requests" metric also supports budgets and is unique in that it polls for changes to that metric over time, since most webpages these days load a boat load of stuff async after page load. In the future it would be possible to seperate this metric into "Sync Requests" and "Async Requests". But not right now.
+
+The tiny button in the lower right hand corner is a simple hide show with localstorage persistance.
 
 
 ** Justice is under active development and the API may change. **
 
-[> DEMO <](http://okor.github.io/justice/)
+
+Why
 ===
+The goal of this project it to provide insight into the performance of a webpage. I would refer to it as a "high level performance discovery tool". My vision for the tool is to allow developers, support team members and anyone interested to discover troublesome performance issues that might not have been previously known. Networks like Vox Media for instance, have many data, media and page types which could end up being manifested in many different combinations. Justice can be rolled out to authenticated users so they can become more aware of perf as they browse their own sites and applications.
+
+Once a page show signs of performance issues, next steps would likely include recording the performance violation and escalating investigation into the whys - using more robust tools like Chromes dev tools or whatever the team is using for deep performance debugging. 
+
+I am considering adding a reporting agent to make recording violations easier, which would probably be an optional callback provided to the Justice initializer. Then one could push the violation data set to some arbitrary endpoint.
 
 ## Use
 Simple
