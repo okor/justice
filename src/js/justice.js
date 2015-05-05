@@ -39,7 +39,7 @@ var Justice = (function() {
 
   return {
     init: function(opts) {
-      if (!window.performance || !window.performance.timing) return;
+      if (!'performance' in window || !'timing' in window.performance) return;
       if (document.readyState === 'complete') {
         seriouslyInit(opts, 'already loaded');
       } else {
