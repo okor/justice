@@ -2,6 +2,10 @@
   "name": "justice",
   "version": "0.1.0",
   "description": "Embedable script for displaying web page performance metrics.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:okor/justice.git"
+  },
   "main": "build/justice.min.js",
   "dependencies": {
     "grunt-plugin-size": "SpaceBeers/grunt-plugin-size"
