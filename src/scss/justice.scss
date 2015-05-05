@@ -1,30 +1,14 @@
 $prefix: '.justice';
 
-$bg-color: rgb(0, 0, 0);
+$bg-color:    rgb(0, 0, 0);
 $label-color: rgb(223, 223, 223);
-$pass-color: rgb(65, 155, 163);
-$warn-color: rgb(212, 202, 61);
-$fail-color: rgb(206, 69, 45);
+$pass-color:  rgb(65, 155, 163);
+$warn-color:  rgb(212, 202, 61);
+$fail-color:  rgb(206, 69, 45);
 
 $container-padding: 10px;
 $metric-height:     40px;
 $metric-width:      150px;
-
-@mixin crossBrowserTransform($value) {
-  -webkit-transform: $value;
-  -moz-transform:    $value;
-  -ms-transform:     $value;
-  -o-transform:      $value;
-  transform:         $value;
-}
-
-@mixin crossBrowserTransition($value) {
-  -webkit-transition: $value;
-  -moz-transition:    $value;
-  -ms-transition:     $value;
-  -o-transition:      $value;
-  transition:         $value;
-}
 
 #{$prefix} {
   position: fixed;
@@ -40,17 +24,15 @@ $metric-width:      150px;
   flex-flow: row wrap;
   justify-content: space-between;
   z-index: 2147483647;
-
-  @include crossBrowserTransition(400ms ease-in-out);
+  transition: 400ms ease-in-out;
 
   @media(min-width: 1235px) {
     padding-bottom: $container-padding;
   }
 
   &.closed {
-    @include crossBrowserTransform(translateY(100%));
+    transform: translateY(100%);
   }
-
 
   #{$prefix}-metric-wrap {
     display: flex;
@@ -102,18 +84,13 @@ $metric-width:      150px;
     top: -20px;
     opacity: 0.5;
     border-top-left-radius: 50%;
+    transition: 400ms ease-in-out;
 
-    @media
-    only screen and (-webkit-min-device-pixel-ratio: 1.1),
-    only screen and (   min--moz-device-pixel-ratio: 1.1),
-    only screen and (     -o-min-device-pixel-ratio: 1.1/1),
-    only screen and (        min-device-pixel-ratio: 1.1) {
+    @media only screen and (min-device-pixel-ratio: 1.1) {
       width: 40px;
       height: 40px;
       top: -40px;
     }
-
-    @include crossBrowserTransition(400ms ease-in-out);
 
     &:after {
       content: '';
@@ -124,13 +101,9 @@ $metric-width:      150px;
       margin: 5px;
       background-color: $label-color;
 
-      @include crossBrowserTransition(400ms ease-in-out);
+      transition: 400ms ease-in-out;
 
-      @media
-      only screen and (-webkit-min-device-pixel-ratio: 1.1),
-      only screen and (   min--moz-device-pixel-ratio: 1.1),
-      only screen and (     -o-min-device-pixel-ratio: 1.1/1),
-      only screen and (        min-device-pixel-ratio: 1.1) {
+      @media only screen and (min-device-pixel-ratio: 1.1) {
         margin: 10px;
       }
     }

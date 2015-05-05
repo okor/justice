@@ -14,10 +14,21 @@ module.exports = function(grunt) {
 
     sass: {
       dist: {
+        options: {
+          outputStyle: 'compressed'
+        },
         files: {
           'tmp/justice.css': 'src/scss/justice.scss'
         }
       }
+    },
+
+    autoprefixer: {
+      dist: {
+        files: {
+          'tmp/justice.css': 'tmp/justice.css'
+        },
+      },
     },
 
     css2js: {
@@ -79,7 +90,7 @@ module.exports = function(grunt) {
         stderr: true
       },
       logSize: {
-        command: 'echo `git rev-parse --short HEAD && date +"%m/%d/%y %T:%S" && stat -c%s build/justice.min.js && echo "bytes"` >> log/size-log.txt'
+        command: 'echo `git rev-parse --short HEAD && date +"%m/%d/%y %T:%S" && stat -f%z build/justice.min.js && echo "bytes"` >> log/size-log.txt'
       }
     },
 
@@ -89,11 +100,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-css2js');
   grunt.loadNpmTasks('grunt-includes');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-shell');
 
-  grunt.registerTask('build', ['clean', 'sass', 'css2js:main', 'includes:js', 'uglify:min', 'uglify:minMapped', 'shell:logSize']);
+  grunt.registerTask('build', ['clean', 'sass', 'autoprefixer', 'css2js:main', 'includes:js', 'uglify:min', 'uglify:minMapped', 'shell:logSize']);
   grunt.registerTask('default', ['build', 'watch']);
 };
