@@ -17,12 +17,28 @@ function getDomInteractive() {
   return timing.domInteractive - timing.domLoading;
 }
 
+function getFirstPaint() {
+  var firstPaint = 0;
+  if (window.chrome && window.chrome.loadTimes) {
+    // Convert to ms
+    firstPaint = window.chrome.loadTimes().firstPaintTime * 1000;
+    firstPaint = firstPaint - (window.chrome.loadTimes().startLoadTime*1000);
+    return firstPaint.toFixed(0);
+  } else if (typeof window.performance.timing.msFirstPaint === 'number') {
+    firstPaint = window.performance.timing.msFirstPaint;
+    firstPaint = firstPaint - window.performance.timing.navigationStart;
+    return firstPaint.toFixed(0);
+  } else {
+    return '¯\\_(ツ)_/¯';
+  }
+}
+
 function getNumRequests() {
   // turn on the dom.enable_resource_timing in firefox about:config
   if (performance.getEntries) {
     return performance.getEntries().length;
   } else {
-    return '?';
+    return '¯\\_(ツ)_/¯';
   }
 }
 
