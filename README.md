@@ -48,6 +48,7 @@ With options
         requests: { budget: 6 }
       },
 
+      warnThreshold: 0.70,
       showFPS: true,
       chartType: 'spline'
     });
