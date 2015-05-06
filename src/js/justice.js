@@ -30,6 +30,7 @@ var Justice = (function() {
   }
 
   function seriouslyInit(opts) {
+    timing = window.performance.timing;
     options = mergeOptions(opts);
     setActiveMetrics(options, activeMetrics, availableMetrics);
     renderUI();

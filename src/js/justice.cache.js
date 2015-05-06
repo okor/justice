@@ -16,7 +16,7 @@ var maxHistory = maxWidth - chartLabelOffset;
 
 var lastTextUpdate = 0;
 var tickCount = 0;
-var timing = window.performance.timing;
+var timing = null;
 
 // Nodes
 var wrap = null;
