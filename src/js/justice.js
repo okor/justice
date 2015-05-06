@@ -39,11 +39,14 @@ var Justice = (function() {
 
   return {
     init: function(opts) {
-      if (!'performance' in window || !'timing' in window.performance) return;
-      if (document.readyState === 'complete') {
-        seriouslyInit(opts, 'already loaded');
+      if ('performance' in window && 'timing' in window.performance) {
+        if (document.readyState === 'complete') {
+          seriouslyInit(opts, 'already loaded');
+        } else {
+          window.onload = function() { seriouslyInit(opts) };
+        }
       } else {
-        window.onload = function() { seriouslyInit(opts) };
+        console.log("Justice: performance api not supported in this browser, initialization stopped.")
       }
     }
   }
