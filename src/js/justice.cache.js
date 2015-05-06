@@ -51,6 +51,7 @@ var defaultOptions = {
     placement: 'bottom'
   },
 
+  warnThreshold: 0.8,
   chartType: 'spline',
   showFPS: true
 };

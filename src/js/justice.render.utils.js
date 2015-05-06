@@ -3,7 +3,7 @@ function getMetricRatingClass(metricValue, metricBudget) {
 
   if (metricValue > metricBudget) {
     rating = 'fail';
-  } else if (metricValue > ( metricBudget / 2) ) {
+  } else if (metricValue > ( metricBudget * options.warnThreshold) ) {
     rating = 'warn';
   } else {
     rating = 'pass';
