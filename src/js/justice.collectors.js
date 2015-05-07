@@ -42,6 +42,10 @@ function getNumRequests() {
   }
 }
 
+function getTTFB() {
+  return timing.responseStart - timing.connectEnd;
+}
+
 // only tracks fps, doesn't handle rendering
 function trackFPS(time) {
   if (!dataFpsLastTime) {

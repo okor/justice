@@ -39,11 +39,12 @@ var domDisplayTextLoadTime = null;
 
 var defaultOptions = {
   metrics: {
-    pageLoad: { budget: 1000 },
-    domComplete: { budget: 800 },
-    domInteractive: { budget: 200 },
-    requests: { budget: 20 },
-    firstpaint: { budget: 200 }
+    TTFB:             { budget: 200   },
+    domInteractive:   { budget: 250   },
+    domComplete:      { budget: 800   },
+    firstPaint:       { budget: 1000  },
+    pageLoad:         { budget: 2000  },
+    requests:         { budget: 6     },
   },
 
   interface: {
@@ -62,7 +63,8 @@ var options = {};
 // TO DO: break these into text: and chart:
 var availableMetrics = {
   pageLoad:         { id: prefix + '-load',         label: 'Load',        unitLabel: 'ms',  collector: getLoadTime        },
-  firstPaint:       { id: prefix + '-load',         label: 'Paint', unitLabel: 'ms',  collector: getFirstPaint      },
+  firstPaint:       { id: prefix + '-paint',        label: 'Paint',       unitLabel: 'ms',  collector: getFirstPaint      },
+  TTFB:             { id: prefix + '-ttfb',         label: 'TTFB',        unitLabel: 'ms',  collector: getTTFB            },
   domComplete:      { id: prefix + '-complete',     label: 'Complete',    unitLabel: 'ms',  collector: getDomComplete     },
   domInteractive:   { id: prefix + '-interactive',  label: 'Interactive', unitLabel: 'ms',  collector: getDomInteractive  },
   requests:         { id: prefix + '-requests',     label: 'Requests',    unitLabel: '',    collector: getNumRequests     }
