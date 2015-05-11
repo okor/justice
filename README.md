@@ -30,14 +30,14 @@ I am considering adding a reporting agent to make recording violations easier, w
 
 ## Use
 Simple
-```
+```html
 <script type="text/javascript" src="../build/justice.mapped.min.js"></script>
 <script type="text/javascript">
   Justice.init();
 </script>
 ```
 With options
-```
+```html
 <script type="text/javascript" src="../build/justice.mapped.min.js"></script>
 <script type="text/javascript">
     Justice.init({
@@ -57,12 +57,12 @@ With options
 
 ## Develop
 The default grunt process will watch files for changes and handle builds. I keep examples/simple.html open in a browser, which will automatically be refreshed on build.
-```
+```sh
 npm install
 grunt
 ```
 I like to keep an eye on fill size, so you can additionally watch that.
-```
+```sh
 watch tail log/size-log.txt
 ```
 
