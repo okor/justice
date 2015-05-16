@@ -1,10 +1,6 @@
-$prefix: '.justice';
+@import "theme";
 
-$bg-color:    rgb(0, 0, 0);
-$label-color: rgb(223, 223, 223);
-$pass-color:  rgb(65, 155, 163);
-$warn-color:  rgb(212, 202, 61);
-$fail-color:  rgb(206, 69, 45);
+$prefix: '.justice';
 
 $container-padding: 10px;
 $metric-height:     40px;
@@ -15,7 +11,7 @@ $metric-width:      150px;
   bottom: 0;
   left: 0;
   right: 0;
-  background: $bg-color;
+  background: map-get($theme, 'bg-color');
   padding: 0 10px 10px 10px;
   box-sizing: border-box;
   font-size: 12px;
@@ -55,30 +51,30 @@ $metric-width:      150px;
   #{$prefix}-title {
     text-transform: uppercase;
     padding: 3px 0.5em 3px 3px;
-    color: $label-color;
+    color: map-get($theme, label-color);
   }
 
   #{$prefix}-text {
-    color: $label-color;
+    color: map-get($theme, label-color);
     font-weight: 600;
   }
 
   #{$prefix}-text.pass {
-    color: $pass-color;
+    color: map-get($theme, pass-color);
   }
 
   #{$prefix}-text.warn {
-    color: $warn-color;
+    color: map-get($theme, warn-color);
   }
 
   #{$prefix}-text.fail {
-    color: $fail-color;
+    color: map-get($theme, fail-color);
   }
 
   #{$prefix}-toggle {
     width: 20px;
     height: 20px;
-    background-color: $bg-color;
+    background-color: map-get($theme, bg-color);
     position: absolute;
     right: 0;
     top: -20px;
@@ -99,7 +95,7 @@ $metric-width:      150px;
       height: 50%;
       border-radius: 100%;
       margin: 5px;
-      background-color: $label-color;
+      background-color: map-get($theme, label-color);
 
       transition: 400ms ease-in-out;
 
@@ -114,7 +110,7 @@ $metric-width:      150px;
       opacity: 1;
 
       &:after {
-        background-color: $pass-color;
+        background-color: map-get($theme, pass-color);
       }
     }
   }

@@ -105,7 +105,20 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-includes');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.registerTask('compileTheme', 'compileTheme', function() {
+    var done = this.async();
+    var fs = require('fs');
+    var jsonSass = require('json-sass');
 
-  grunt.registerTask('build', ['clean', 'sass', 'autoprefixer', 'css2js:main', 'includes:js', 'uglify:min', 'uglify:minMapped', 'shell:logSize']);
+    fs.createReadStream('src/theme.json')
+      .pipe(jsonSass({
+        prefix: '$theme: ',
+      }))
+      .pipe(fs.createWriteStream('src/scss/theme.scss'));
+
+    done();
+  });
+
+  grunt.registerTask('build', ['clean', 'compileTheme', 'sass', 'autoprefixer', 'css2js:main', 'includes:js', 'uglify:min', 'uglify:minMapped', 'shell:logSize']);
   grunt.registerTask('default', ['build', 'watch']);
 };
