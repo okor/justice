@@ -38,6 +38,17 @@ module.exports = function(grunt) {
       }
     },
 
+    json: {
+      main: {
+        options: {
+          namespace: 'justiceTheme',
+          includePath: false
+        },
+        src: ['src/theme.json'],
+        dest: 'src/js/justice.theme.js'
+      }
+    },
+
     includes: {
       js: {
         options: {
@@ -105,6 +116,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-includes');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-json');
+
   grunt.registerTask('compileTheme', 'compileTheme', function() {
     var done = this.async();
     var fs = require('fs');
@@ -119,6 +132,6 @@ module.exports = function(grunt) {
     done();
   });
 
-  grunt.registerTask('build', ['clean', 'compileTheme', 'sass', 'autoprefixer', 'css2js:main', 'includes:js', 'uglify:min', 'uglify:minMapped', 'shell:logSize']);
+  grunt.registerTask('build', ['clean', 'compileTheme', 'sass', 'autoprefixer', 'css2js:main', 'json', 'includes:js', 'uglify:min', 'uglify:minMapped', 'shell:logSize']);
   grunt.registerTask('default', ['build', 'watch']);
 };

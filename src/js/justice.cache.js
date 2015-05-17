@@ -1,9 +1,9 @@
 // these should all be in a settings hash
 var primaryColor = "rgb(241, 250, 195)";
 var secondaryColor = "rgb(48, 48, 48)";
-var failColor = "rgb(206, 69, 45)";
-var warnColor = "rgb(212, 202, 61)";
-var passColor = "rgb(65, 155, 163)";
+var failColor = justiceTheme.theme['fail-color'];
+var warnColor = justiceTheme.theme['warn-color'];
+var passColor = justiceTheme.theme['pass-color'];
 
 // need to get a better waying of syncing these values with css
 var prefix = "justice";

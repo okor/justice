@@ -1,6 +1,7 @@
 'use strict';
 var Justice = (function() {
 
+  include "justice.theme.js"
   include "justice.cache.js"
   include "justice.mungers.js"
   include "justice.collectors.js"
