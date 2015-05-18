@@ -69,11 +69,14 @@
   &lt;script type=&quot;text/javascript&quot;&gt;
     Justice.init({
       metrics: {
-        pageLoad: { budget: 800 },
-        domComplete: { budget: 600 },
-        domInteractive: { budget: 400 },
-        requests: { budget: 6 }
+        TTFB:             { budget: 200   },
+        domInteractive:   { budget: 250   },
+        domComplete:      { budget: 800   },
+        firstPaint:       { budget: 1000  },
+        pageLoad:         { budget: 2000  },
+        requests:         { budget: 6     },
       },
+      warnThreshold: 0.08,
       showFPS: true,
       chartType: 'spline'
     });
@@ -96,16 +99,18 @@
   <script type="text/javascript">
     Justice.init({
       metrics: {
-        pageLoad: { budget: 800 },
-        domComplete: { budget: 600 },
-        domInteractive: { budget: 400 },
-        requests: { budget: 6 }
+        TTFB:             { budget: 200   },
+        domInteractive:   { budget: 250   },
+        domComplete:      { budget: 800   },
+        firstPaint:       { budget: 1000  },
+        pageLoad:         { budget: 2000  },
+        requests:         { budget: 6     },
       },
+      warnThreshold: 0.08,
       showFPS: true,
       chartType: 'spline'
     });
   </script>
-
 
   <script type="text/javascript">
     // simulating some ajax requests that might occur on a real site
