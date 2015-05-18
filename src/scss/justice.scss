@@ -25,6 +25,7 @@ $metric-width:      150px;
   justify-content: space-between;
   z-index: 2147483647;
   transition: 400ms ease-in-out;
+  direction: ltr;
 
   @media(min-width: 1235px) {
     padding-bottom: $container-padding;
