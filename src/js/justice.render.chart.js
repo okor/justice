@@ -37,7 +37,7 @@ function renderChartLines(ctx) {
     ctx.lineTo(maxWidth + 0.5, top);
     ctx.lineWidth = 1;
     ctx.strokeStyle = secondaryColor;
-    ctx.stroke()
+    ctx.stroke();
   }
 }
 
