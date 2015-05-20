@@ -53,7 +53,7 @@ function trackFPS(time) {
   } else {
     var delta = (time - dataFpsLastTime) / 1000;
     var fps = 1 / delta;
-    var fpsClipped = Math.floor(fps > 60 ? 60 : fps);
+    var fpsClipped = fps > 60 ? 60 : Math.floor(fps);
     dataFpsCurrent = fpsClipped;
     dataFpsHistory.push([fpsClipped, fpsClipped]);
     if (dataFpsHistory.length > maxHistory) {
