@@ -22,9 +22,9 @@ The tiny button in the lower right hand corner is a simple hide show with locals
 
 Why
 ===
-The goal of this project it to provide insight into the performance of a webpage. I would refer to it as a "high level performance discovery tool". My vision for the tool is to allow developers, support team members and anyone interested to discover troublesome performance issues that might not have been previously known. Networks like Vox Media for instance, have many data, media and page types which could end up being manifested in many different combinations. Justice can be rolled out to authenticated users so they can become more aware of perf as they browse their own sites and applications.
+The goal of this project is to provide insight into the performance of a webpage. I would refer to it as a "high level performance discovery tool". My vision for the tool is to allow developers, support team members and anyone interested to discover troublesome performance issues that might not have been previously known. Networks like Vox Media for instance, have many data, media and page types which could end up being manifested in many different combinations. Justice can be rolled out to authenticated users so they can become more aware of perf as they browse their own sites and applications.
 
-Once a page show signs of performance issues, next steps would likely include recording the performance violation and escalating investigation into the whys - using more robust tools like Chromes dev tools or whatever the team is using for deep performance debugging.
+Once a page shows signs of performance issues, next steps would likely include recording the performance violation and escalating investigation into the whys - using more robust tools like Chromes dev tools or whatever the team is using for deep performance debugging.
 
 I am considering adding a reporting agent to make recording violations easier, which would probably be an optional callback provided to the Justice initializer. Then one could push the violation data set to some arbitrary endpoint.
 
