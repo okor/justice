@@ -16,12 +16,10 @@ function getSingleTextMetricHTML(metricKey, metric, budget) {
   var metricValue = metric.collector();
   var ratingClass = getMetricRatingClass(metricValue, budget);
 
-  return [
-    '<div class="' + prefix + '-metric" id="' + metric.id + '">',
-      '<span class="' + prefix + '-title">' + metric.label + ': </span>',
-      '<span class="' + prefix + '-text ' + ratingClass + '">' + metricValue + metric.unitLabel + '</span>',
-    '</div>'
-  ].join('');
+  return `<div class="${prefix}-metric" id="${metric.id}">
+      <span class="${prefix}-title">${metric.label}: </span>
+      <span class="${prefix}-text ${ratingClass}">${metricValue + metric.unitLabel}</span>
+    </div>`;
 }
 
 function getAllTextMetricsHTML(metrics) {
@@ -32,16 +30,15 @@ function getAllTextMetricsHTML(metrics) {
     textMetricsHTML.push(html);
   }
 
-  return '<div id="' + prefix + '-text-metrics" class="' + prefix + '-metric-wrap">' + textMetricsHTML.join('') + '</div>';
+  return `<div id="${prefix}-text-metrics" class="${prefix}-metric-wrap">${ textMetricsHTML.join('') }</div>`;
 }
 
 function getAllChartMetricsHTML() {
-  var metricHTML = !options.showFPS ? '' : [
-    '<div class="' + prefix + '-metric chart">',
-      '<span class="' + prefix + '-title">FPS: </span>',
-      '<canvas id="' + prefix + '-fps" class="' + prefix + '-canvas" height="' + maxHeight + '" width="' + maxWidth + '"></canvas>',
-    '</div>'
-  ].join('');
+  var metricHTML = !options.showFPS ? '' :
+    `<div class="${prefix}-metric chart">
+      <span class="${prefix}-title">FPS: </span>
+      <canvas id="${prefix}-fps" class="${prefix}-canvas" height="${maxHeight}" width="${maxWidth}"></canvas>
+    </div>`;
 
   return metricHTML;
 }

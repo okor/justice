@@ -22,7 +22,7 @@ function renderUI() {
   wrap = document.getElementById(prefix)
 
   wrap.innerHTML = [
-    '<div id="' + prefix + '-toggle" class="' + prefix + '-toggle"></div>',
+    `<div id="${prefix}-toggle" class="${prefix}-toggle"></div>`,
     getAllTextMetricsHTML(),
     getAllChartMetricsHTML()
   ].join('');

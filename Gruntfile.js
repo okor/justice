@@ -53,13 +53,25 @@ module.exports = function(grunt) {
       }
     },
 
+    babel: {
+      options: {
+        sourceMap: true
+      },
+      dist: {
+        files: [{
+          src: 'tmp/justice.all.js',
+          dest: 'tmp/justice.all.compiled.js'
+        }],
+      },
+    },
+
     uglify: {
       min: {
         options: {
           mangle: true
         },
         files: {
-          'build/justice.min.js': ['tmp/justice.css.js', 'tmp/justice.all.js']
+          'build/justice.min.js': ['tmp/justice.css.js', 'tmp/justice.all.compiled.js']
         },
       },
      minMapped: {
@@ -68,7 +80,7 @@ module.exports = function(grunt) {
           sourceMap: true,
         },
         files: {
-          'build/justice.mapped.min.js': ['tmp/justice.css.js', 'tmp/justice.all.js']
+          'build/justice.mapped.min.js': ['tmp/justice.css.js', 'tmp/justice.all.compiled.js']
         },
       },
       beauty: {
@@ -80,7 +92,7 @@ module.exports = function(grunt) {
           mangle: false,
         },
         files: {
-          'build/justice.js': ['tmp/justice.css.js', 'tmp/justice.all.js']
+          'build/justice.js': ['tmp/justice.css.js', 'tmp/justice.all.compiled.js']
         }
       }
     },
@@ -105,7 +117,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-includes');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-babel');
 
-  grunt.registerTask('build', ['clean', 'sass', 'autoprefixer', 'css2js:main', 'includes:js', 'uglify:min', 'uglify:minMapped', 'shell:logSize']);
+  grunt.registerTask('build', ['clean', 'sass', 'autoprefixer', 'css2js:main', 'includes:js', 'babel', 'uglify:min', 'uglify:minMapped', 'shell:logSize']);
   grunt.registerTask('default', ['build', 'watch']);
 };
