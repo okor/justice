@@ -53,11 +53,14 @@ module.exports = function(grunt) {
       }
     },
 
-    babel: {
-      options: {
-        sourceMap: true
-      },
+    browserify: {
       dist: {
+        options: {
+          browserifyOptions: {
+            debug: true, // This turns on sourcemaps
+            transform: [["babelify", { "stage": 0 }]]
+          }
+        },
         files: [{
           src: 'tmp/justice.all.js',
           dest: 'tmp/justice.all.compiled.js'
@@ -117,8 +120,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-includes');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-babel');
+  grunt.loadNpmTasks('grunt-browserify');
 
-  grunt.registerTask('build', ['clean', 'sass', 'autoprefixer', 'css2js:main', 'includes:js', 'babel', 'uglify:min', 'uglify:minMapped', 'shell:logSize']);
+  grunt.registerTask('build', ['clean', 'sass', 'autoprefixer', 'css2js:main', 'includes:js', 'browserify', 'uglify:min', 'uglify:minMapped', 'shell:logSize']);
   grunt.registerTask('default', ['build', 'watch']);
 };
