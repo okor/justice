@@ -4,22 +4,21 @@
 
 import { settings, dataFpsHistory } from "./justice.cache";
 
-var timing = settings.timing;
 var shrug = '¯\\_(ツ)_/¯';
 
 // load time
 export function getLoadTime() {
-  return timing.loadEventStart - timing.navigationStart;
+  return settings.timing.loadEventStart - settings.timing.navigationStart;
 }
 
 // from first byte to dom complete
 export function getDomComplete() {
-  return timing.domComplete - timing.domLoading;
+  return settings.timing.domComplete - settings.timing.domLoading;
 }
 
 // from first byte to dom is interactive
 export function getDomInteractive() {
-  return timing.domInteractive - timing.domLoading;
+  return settings.timing.domInteractive - settings.timing.domLoading;
 }
 
 export function getFirstPaint() {
@@ -32,9 +31,9 @@ export function getFirstPaint() {
     return firstPaint.toFixed(0);
   }
 
-  if (typeof timing.msFirstPaint === 'number') {
-    firstPaint = timing.msFirstPaint;
-    firstPaint = firstPaint - timing.navigationStart;
+  if (typeof settings.timing.msFirstPaint === 'number') {
+    firstPaint = settings.timing.msFirstPaint;
+    firstPaint = firstPaint - settings.timing.navigationStart;
     return firstPaint.toFixed(0);
   }
 
@@ -46,7 +45,7 @@ export function getNumRequests() {
 }
 
 export function getTTFB() {
-  return timing.responseStart - timing.connectEnd;
+  return settings.timing.responseStart - settings.timing.connectEnd;
 }
 
 var dataFpsLastTime = null;
