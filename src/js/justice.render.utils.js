@@ -1,26 +1,24 @@
 import { settings, options, activeMetrics } from "./justice.cache";
 
+var prefix = settings.prefix;
+
 function getMetricRatingClass(metricValue, metricBudget) {
-  var rating = '';
-
   if (metricValue > metricBudget) {
-    rating = 'fail';
-  } else if (metricValue > ( metricBudget * options.warnThreshold) ) {
-    rating = 'warn';
-  } else {
-    rating = 'pass';
+    return 'fail';
   }
-
-  return rating;
+  if (metricValue > ( metricBudget * options.warnThreshold) ) {
+    return 'warn';
+  }
+  return 'pass';
 }
 
 function getSingleTextMetricHTML(metricKey, metric, budget) {
   var metricValue = metric.collector();
   var ratingClass = getMetricRatingClass(metricValue, budget);
 
-  return `<div class="${settings.prefix}-metric" id="${metric.id}">
-      <span class="${settings.prefix}-title">${metric.label}: </span>
-      <span class="${settings.prefix}-text ${ratingClass}">${metricValue + metric.unitLabel}</span>
+  return `<div class="${prefix}-metric" id="${metric.id}">
+      <span class="${prefix}-title">${metric.label}: </span>
+      <span class="${prefix}-text ${ratingClass}">${metricValue + metric.unitLabel}</span>
     </div>`;
 }
 
@@ -32,19 +30,17 @@ export function getAllTextMetricsHTML(metrics) {
     textMetricsHTML.push(html);
   }
 
-  return `<div id="${settings.prefix}-text-metrics" class="${settings.prefix}-metric-wrap">
+  return `<div id="${prefix}-text-metrics" class="${prefix}-metric-wrap">
     ${ textMetricsHTML.join('') }
   </div>`;
 }
 
 export function getAllChartMetricsHTML() {
-  var metricHTML = !options.showFPS ? '' :
-    `<div class="${settings.prefix}-metric chart">
-      <span class="${settings.prefix}-title">FPS: </span>
-      <canvas id="${settings.prefix}-fps" class="${settings.prefix}-canvas" height="${settings.maxHeight}" width="${settings.maxWidth}"></canvas>
+  return !options.showFPS ? '' :
+      `<div class="${prefix}-metric chart">
+      <span class="${prefix}-title">FPS: </span>
+      <canvas id="${prefix}-fps" class="${prefix}-canvas" height="${settings.maxHeight}" width="${settings.maxWidth}"></canvas>
     </div>`;
-
-  return metricHTML;
 }
 
 

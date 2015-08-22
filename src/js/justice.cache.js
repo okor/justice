@@ -41,14 +41,15 @@ export var options = {
 };
 
 
+var prefix = settings.prefix;
 // TO DO: break these into text: and chart:
 export var availableMetrics = {
-  pageLoad:         { id: settings.prefix + '-load',         label: 'Load',        unitLabel: 'ms',  collector: collectors.getLoadTime        },
-  firstPaint:       { id: settings.prefix + '-paint',        label: 'Paint',       unitLabel: 'ms',  collector: collectors.getFirstPaint      },
-  TTFB:             { id: settings.prefix + '-ttfb',         label: 'TTFB',        unitLabel: 'ms',  collector: collectors.getTTFB            },
-  domComplete:      { id: settings.prefix + '-complete',     label: 'Complete',    unitLabel: 'ms',  collector: collectors.getDomComplete     },
-  domInteractive:   { id: settings.prefix + '-interactive',  label: 'Interactive', unitLabel: 'ms',  collector: collectors.getDomInteractive  },
-  requests:         { id: settings.prefix + '-requests',     label: 'Requests',    unitLabel: '',    collector: collectors.getNumRequests     }
+  pageLoad:         { id: prefix + '-load',         label: 'Load',        unitLabel: 'ms',  collector: collectors.getLoadTime        },
+  firstPaint:       { id: prefix + '-paint',        label: 'Paint',       unitLabel: 'ms',  collector: collectors.getFirstPaint      },
+  TTFB:             { id: prefix + '-ttfb',         label: 'TTFB',        unitLabel: 'ms',  collector: collectors.getTTFB            },
+  domComplete:      { id: prefix + '-complete',     label: 'Complete',    unitLabel: 'ms',  collector: collectors.getDomComplete     },
+  domInteractive:   { id: prefix + '-interactive',  label: 'Interactive', unitLabel: 'ms',  collector: collectors.getDomInteractive  },
+  requests:         { id: prefix + '-requests',     label: 'Requests',    unitLabel: '',    collector: collectors.getNumRequests     }
 };
 
 export var activeMetrics = {};

@@ -7,6 +7,8 @@ import { trackFPS } from "./justice.collectors";
 
 import { getAllTextMetricsHTML, getAllChartMetricsHTML } from "./justice.render.utils";
 
+var prefix = settings.prefix;
+
 var tickCount = 0;
 var lastTextUpdate = 0;
 
@@ -38,7 +40,7 @@ export function tick(time, fpsRenderer) {
 
 
 export function cacheLookups() {
-  domDisplayChartFpsCanvas = document.getElementById(settings.prefix + '-fps')
+  domDisplayChartFpsCanvas = document.getElementById(prefix + '-fps');
   domDisplayChartFpsCanvasCtx = domDisplayChartFpsCanvas.getContext('2d');
 }
 
@@ -46,14 +48,13 @@ export function cacheLookups() {
 export function renderUI() {
   var stateClass = getState();
   var wrap = document.createElement('div');
-  wrap.id = settings.prefix;
-  wrap.classList.add(settings.prefix);
-  wrap.classList.add(stateClass);
+  wrap.id = prefix;
+  wrap.classList.add(prefix, stateClass);
   document.body.appendChild(wrap);
-  wrap = document.getElementById(settings.prefix);
+  wrap = document.getElementById(prefix);
 
   wrap.innerHTML = [
-    `<div id="${settings.prefix}-toggle" class="${settings.prefix}-toggle"></div>`,
+    `<div id="${prefix}-toggle" class="${prefix}-toggle"></div>`,
     getAllTextMetricsHTML(),
     getAllChartMetricsHTML()
   ].join('');
@@ -66,35 +67,29 @@ export function renderUI() {
 
 
 export function renderText() {
-  var html = getAllTextMetricsHTML(activeMetrics);
-  var textWrapper = document.getElementById(settings.prefix + '-text-metrics');
-  textWrapper.innerHTML = html;
+  var textWrapper = document.getElementById(prefix + '-text-metrics');
+  textWrapper.innerHTML = getAllTextMetricsHTML(activeMetrics);
 }
 
 
 export function attachListeners() {
-  document.getElementById(settings.prefix + '-toggle').onclick = function() {
-    var e = document.getElementById(settings.prefix);
+  document.getElementById(prefix + '-toggle').onclick = function() {
+    var e = document.getElementById(prefix);
+    var closedClass = 'closed';
 
-    if (e.className.match(' closed')) {
-      e.className = e.className.replace(' closed', '')
-      setState('open');
-    } else {
-      e.className += ' closed';
-      setState('closed')
-    }
-
+    e.classList.toggle(closedClass);
+    setState(e.classList.contains(closedClass) ? closedClass : 'open');
   }
 }
 
 
 export function setState(state) {
-  if (!window.localStorage) return;
-  window.localStorage.setItem(settings.prefix + '-state', state);
+  if (window.localStorage) return;
+  localStorage.setItem(prefix + '-state', state);
 }
 
 
 export function getState() {
   if (!window.localStorage) return;
-  return window.localStorage.getItem(settings.prefix + '-state') || 'open';
+  return localStorage.getItem(prefix + '-state') || 'open';
 }
