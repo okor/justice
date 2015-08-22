@@ -38,32 +38,21 @@ module.exports = function(grunt) {
       }
     },
 
-    includes: {
-      js: {
-        options: {
-          duplicates: false,
-          debug: true,
-          silent: false
-        },
-        files: [{
-          src: 'src/js/justice.js',
-          dest: 'tmp/justice.all.js',
-          includePath: 'src'
-        }],
-      }
-    },
-
     browserify: {
       dist: {
         options: {
           browserifyOptions: {
             debug: true, // This turns on sourcemaps
-            transform: [["babelify", { "stage": 0 }]]
+            standalone: 'Justice',
+            transform: [['babelify', {
+              stage: 0,
+              loose: 'all'
+            }]]
           }
         },
         files: [{
-          src: 'tmp/justice.all.js',
-          dest: 'tmp/justice.all.compiled.js'
+          src: 'src/js/justice.js',
+          dest: 'tmp/justice.compiled.js'
         }],
       },
     },
@@ -74,7 +63,7 @@ module.exports = function(grunt) {
           mangle: true
         },
         files: {
-          'build/justice.min.js': ['tmp/justice.css.js', 'tmp/justice.all.compiled.js']
+          'build/justice.min.js': ['tmp/justice.css.js', 'tmp/justice.compiled.js']
         },
       },
      minMapped: {
@@ -83,7 +72,7 @@ module.exports = function(grunt) {
           sourceMap: true,
         },
         files: {
-          'build/justice.mapped.min.js': ['tmp/justice.css.js', 'tmp/justice.all.compiled.js']
+          'build/justice.mapped.min.js': ['tmp/justice.css.js', 'tmp/justice.compiled.js']
         },
       },
       beauty: {
@@ -95,7 +84,7 @@ module.exports = function(grunt) {
           mangle: false,
         },
         files: {
-          'build/justice.js': ['tmp/justice.css.js', 'tmp/justice.all.compiled.js']
+          'build/justice.js': ['tmp/justice.css.js', 'tmp/justice.compiled.js']
         }
       }
     },
@@ -122,6 +111,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-browserify');
 
-  grunt.registerTask('build', ['clean', 'sass', 'autoprefixer', 'css2js:main', 'includes:js', 'browserify', 'uglify:min', 'uglify:minMapped', 'shell:logSize']);
+  grunt.registerTask('build', ['clean', 'sass', 'autoprefixer', 'css2js:main', 'browserify', 'uglify:min', 'uglify:minMapped', 'shell:logSize']);
   grunt.registerTask('default', ['build', 'watch']);
 };

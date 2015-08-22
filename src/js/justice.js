@@ -1,55 +1,34 @@
 'use strict';
-var Justice = (function() {
 
-  include "justice.cache.js"
-  include "justice.mungers.js"
-  include "justice.collectors.js"
-  include "justice.render.js"
+import { options, availableMetrics, activeMetrics } from "./justice.cache";
+import { tick, renderUI } from "./justice.render";
 
-  // main tick function that calls everything else
-  function tick(time) {
-    tickCount++;
+import { getFpsRenderer } from "./justice.render.chart";
 
-    if (options.showFPS) {
-      trackFPS(time);
-      fpsRenderer(
-        domDisplayChartFpsCanvasCtx,
-        domDisplayChartFpsCanvas,
-        dataFpsHistory
-      );
-    }
-
-    if (lastTextUpdate === null) {
-      lastTextUpdate = time;
-    } else if (time - lastTextUpdate > 3000) {
-      lastTextUpdate = time;
-      renderText();
-    }
-
-    window.requestAnimationFrame(tick);
-  }
-
-  function seriouslyInit(opts) {
-    timing = window.performance.timing;
-    options = mergeOptions(opts);
-    setActiveMetrics(options, activeMetrics, availableMetrics);
-    renderUI();
-    fpsRenderer = getFpsRenderer(options.chartType);
-    window.requestAnimationFrame(tick);
-  }
-
-  return {
-    init: function(opts) {
-      if ('performance' in window && 'timing' in window.performance) {
-        if (document.readyState === 'complete') {
-          seriouslyInit(opts, 'already loaded');
-        } else {
-          window.onload = function() { seriouslyInit(opts) };
-        }
-      } else {
-        console.log("Justice: performance api not supported in this browser, initialization stopped.")
-      }
+function seriouslyInit(opts) {
+  if (typeof opts === 'object') {
+    for (var i in opts) {
+      options[i] = opts[i];
     }
   }
 
-})();
+  for (var j in options.metrics) {
+    activeMetrics[j] = availableMetrics[j];
+  }
+
+  renderUI();
+  var fpsRenderer = getFpsRenderer(options.chartType);
+  window.requestAnimationFrame((time) => tick(time, fpsRenderer));
+}
+
+export function init(opts) {
+  if ('performance' in window && 'timing' in window.performance) {
+    if (document.readyState === 'complete') {
+      seriouslyInit(opts, 'already loaded');
+    } else {
+      window.onload = function() { seriouslyInit(opts) };
+    }
+  } else {
+    console.log("Justice: performance api not supported in this browser, initialization stopped.")
+  }
+}

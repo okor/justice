@@ -1,43 +1,26 @@
-// these should all be in a settings hash
-var primaryColor = "rgb(241, 250, 195)";
-var secondaryColor = "rgb(48, 48, 48)";
-var failColor = "rgb(206, 69, 45)";
-var warnColor = "rgb(212, 202, 61)";
-var passColor = "rgb(65, 155, 163)";
+import * as collectors from "./justice.collectors";
 
 // need to get a better waying of syncing these values with css
-var prefix = "justice";
-var maxWidth = 300;
-var maxHeight = 40;
+export var settings = {
+  primaryColor: "rgb(241, 250, 195)",
+  secondaryColor: "rgb(48, 48, 48)",
+  failColor: "rgb(206, 69, 45)",
+  warnColor: "rgb(212, 202, 61)",
+  passColor: "rgb(65, 155, 163)",
 
-var fpsHeightScale = maxHeight / 60;
-var chartLabelOffset = 20;
-var maxHistory = maxWidth - chartLabelOffset;
+  prefix: "justice",
+  maxWidth: 300,
+  maxHeight: 40,
 
-var lastTextUpdate = 0;
-var tickCount = 0;
-var timing = null;
-
-// Nodes
-var wrap = null;
-var domBarNode = null;
+  chartLabelOffset: 20,
+  timing: window.performance.timing
+};
 
 // FPS
-var fpsRenderer = null;
-var dataFpsCurrent = 0;
-var dataFpsHistory = [];
-var dataFpsLastTime = null;
+export var dataFpsHistory = [];
 
-var domDisplayChartFps = null;
-var domDisplayChartFpsCanvas = null;
-var domDisplayChartFpsCanvasCtx = null;
-
-
-// Text
-var domDisplayTextLoadTime = null;
-
-
-var defaultOptions = {
+// These are the default options
+export var options = {
   metrics: {
     TTFB:             { budget: 200   },
     domInteractive:   { budget: 250   },
@@ -47,7 +30,7 @@ var defaultOptions = {
     requests:         { budget: 6     },
   },
 
-  interface: {
+  'interface': {
     position: 'fixed',
     placement: 'bottom'
   },
@@ -57,18 +40,16 @@ var defaultOptions = {
   showFPS: true
 };
 
-var options = {};
-
 
 // TO DO: break these into text: and chart:
-var availableMetrics = {
-  pageLoad:         { id: prefix + '-load',         label: 'Load',        unitLabel: 'ms',  collector: getLoadTime        },
-  firstPaint:       { id: prefix + '-paint',        label: 'Paint',       unitLabel: 'ms',  collector: getFirstPaint      },
-  TTFB:             { id: prefix + '-ttfb',         label: 'TTFB',        unitLabel: 'ms',  collector: getTTFB            },
-  domComplete:      { id: prefix + '-complete',     label: 'Complete',    unitLabel: 'ms',  collector: getDomComplete     },
-  domInteractive:   { id: prefix + '-interactive',  label: 'Interactive', unitLabel: 'ms',  collector: getDomInteractive  },
-  requests:         { id: prefix + '-requests',     label: 'Requests',    unitLabel: '',    collector: getNumRequests     }
-}
+export var availableMetrics = {
+  pageLoad:         { id: settings.prefix + '-load',         label: 'Load',        unitLabel: 'ms',  collector: collectors.getLoadTime        },
+  firstPaint:       { id: settings.prefix + '-paint',        label: 'Paint',       unitLabel: 'ms',  collector: collectors.getFirstPaint      },
+  TTFB:             { id: settings.prefix + '-ttfb',         label: 'TTFB',        unitLabel: 'ms',  collector: collectors.getTTFB            },
+  domComplete:      { id: settings.prefix + '-complete',     label: 'Complete',    unitLabel: 'ms',  collector: collectors.getDomComplete     },
+  domInteractive:   { id: settings.prefix + '-interactive',  label: 'Interactive', unitLabel: 'ms',  collector: collectors.getDomInteractive  },
+  requests:         { id: settings.prefix + '-requests',     label: 'Requests',    unitLabel: '',    collector: collectors.getNumRequests     }
+};
 
-var activeMetrics = {};
+export var activeMetrics = {};
 
