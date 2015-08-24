@@ -2,27 +2,59 @@
 // DOM interaction //
 /////////////////////
 
-include "justice.render.utils.js"
-include "justice.render.chart.js"
+import { settings, dataFpsHistory, options, activeMetrics } from "./justice.cache";
+import { trackFPS } from "./justice.collectors";
+
+import { getAllTextMetricsHTML, getAllChartMetricsHTML } from "./justice.render.utils";
+
+var prefix = settings.prefix;
+
+var tickCount = 0;
+var lastTextUpdate = 0;
+
+var domDisplayChartFpsCanvas = null;
+var domDisplayChartFpsCanvasCtx = null;
+
+// main tick function that calls everything else
+export function tick(time, fpsRenderer) {
+  tickCount++;
+
+  if (options.showFPS) {
+    trackFPS(time);
+    fpsRenderer(
+        domDisplayChartFpsCanvasCtx,
+        domDisplayChartFpsCanvas,
+        dataFpsHistory
+    );
+  }
+
+  if (lastTextUpdate === null) {
+    lastTextUpdate = time;
+  } else if (time - lastTextUpdate > 3000) {
+    lastTextUpdate = time;
+    renderText();
+  }
+
+  window.requestAnimationFrame((time) => tick(time, fpsRenderer));
+}
 
 
-function cacheLookups() {
-  domDisplayChartFpsCanvas = document.getElementById(prefix + '-fps')
+export function cacheLookups() {
+  domDisplayChartFpsCanvas = document.getElementById(prefix + '-fps');
   domDisplayChartFpsCanvasCtx = domDisplayChartFpsCanvas.getContext('2d');
 }
 
 
-function renderUI() {
+export function renderUI() {
   var stateClass = getState();
-  wrap = document.createElement('div');
+  var wrap = document.createElement('div');
   wrap.id = prefix;
-  wrap.classList.add(prefix);
-  wrap.classList.add(stateClass);
+  wrap.classList.add(prefix, stateClass);
   document.body.appendChild(wrap);
-  wrap = document.getElementById(prefix)
+  wrap = document.getElementById(prefix);
 
   wrap.innerHTML = [
-    '<div id="' + prefix + '-toggle" class="' + prefix + '-toggle"></div>',
+    `<div id="${prefix}-toggle" class="${prefix}-toggle"></div>`,
     getAllTextMetricsHTML(),
     getAllChartMetricsHTML()
   ].join('');
@@ -34,36 +66,30 @@ function renderUI() {
 }
 
 
-function renderText() {
-  var html = getAllTextMetricsHTML(activeMetrics);
+export function renderText() {
   var textWrapper = document.getElementById(prefix + '-text-metrics');
-  textWrapper.innerHTML = html;
+  textWrapper.innerHTML = getAllTextMetricsHTML(activeMetrics);
 }
 
 
-function attachListeners() {
+export function attachListeners() {
   document.getElementById(prefix + '-toggle').onclick = function() {
     var e = document.getElementById(prefix);
+    var closedClass = 'closed';
 
-    if (e.className.match(' closed')) {
-      e.className = e.className.replace(' closed', '')
-      setState('open');
-    } else {
-      e.className += ' closed';
-      setState('closed')
-    }
-
+    e.classList.toggle(closedClass);
+    setState(e.classList.contains(closedClass) ? closedClass : 'open');
   }
 }
 
 
-function setState(state) {
-  if (!window.localStorage) return;
-  window.localStorage.setItem(prefix + '-state', state);
+export function setState(state) {
+  if (window.localStorage) return;
+  localStorage.setItem(prefix + '-state', state);
 }
 
 
-function getState() {
+export function getState() {
   if (!window.localStorage) return;
-  return window.localStorage.getItem(prefix + '-state') || 'open';
+  return localStorage.getItem(prefix + '-state') || 'open';
 }

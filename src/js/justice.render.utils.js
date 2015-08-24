@@ -1,30 +1,28 @@
+import { settings, options, activeMetrics } from "./justice.cache";
+
+var prefix = settings.prefix;
+
 function getMetricRatingClass(metricValue, metricBudget) {
-  var rating = '';
-
   if (metricValue > metricBudget) {
-    rating = 'fail';
-  } else if (metricValue > ( metricBudget * options.warnThreshold) ) {
-    rating = 'warn';
-  } else {
-    rating = 'pass';
+    return 'fail';
   }
-
-  return rating;
+  if (metricValue > ( metricBudget * options.warnThreshold) ) {
+    return 'warn';
+  }
+  return 'pass';
 }
 
 function getSingleTextMetricHTML(metricKey, metric, budget) {
   var metricValue = metric.collector();
   var ratingClass = getMetricRatingClass(metricValue, budget);
 
-  return [
-    '<div class="' + prefix + '-metric" id="' + metric.id + '">',
-      '<span class="' + prefix + '-title">' + metric.label + ': </span>',
-      '<span class="' + prefix + '-text ' + ratingClass + '">' + metricValue + metric.unitLabel + '</span>',
-    '</div>'
-  ].join('');
+  return `<div class="${prefix}-metric" id="${metric.id}">
+      <span class="${prefix}-title">${metric.label}: </span>
+      <span class="${prefix}-text ${ratingClass}">${metricValue + metric.unitLabel}</span>
+    </div>`;
 }
 
-function getAllTextMetricsHTML(metrics) {
+export function getAllTextMetricsHTML(metrics) {
   var textMetricsHTML = [];
 
   for (var k in activeMetrics ) {
@@ -32,18 +30,17 @@ function getAllTextMetricsHTML(metrics) {
     textMetricsHTML.push(html);
   }
 
-  return '<div id="' + prefix + '-text-metrics" class="' + prefix + '-metric-wrap">' + textMetricsHTML.join('') + '</div>';
+  return `<div id="${prefix}-text-metrics" class="${prefix}-metric-wrap">
+    ${ textMetricsHTML.join('') }
+  </div>`;
 }
 
-function getAllChartMetricsHTML() {
-  var metricHTML = !options.showFPS ? '' : [
-    '<div class="' + prefix + '-metric chart">',
-      '<span class="' + prefix + '-title">FPS: </span>',
-      '<canvas id="' + prefix + '-fps" class="' + prefix + '-canvas" height="' + maxHeight + '" width="' + maxWidth + '"></canvas>',
-    '</div>'
-  ].join('');
-
-  return metricHTML;
+export function getAllChartMetricsHTML() {
+  return !options.showFPS ? '' :
+      `<div class="${prefix}-metric chart">
+      <span class="${prefix}-title">FPS: </span>
+      <canvas id="${prefix}-fps" class="${prefix}-canvas" height="${settings.maxHeight}" width="${settings.maxWidth}"></canvas>
+    </div>`;
 }
 
 
