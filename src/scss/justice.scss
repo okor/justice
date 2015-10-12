@@ -79,7 +79,7 @@ $metric-width:      150px;
   #{$prefix}-toggle {
     width: 20px;
     height: 20px;
-    cursor: hand;
+    cursor: pointer;
     background-color: $bg-color;
     position: absolute;
     right: 0;
