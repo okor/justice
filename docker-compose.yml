@@ -1,4 +1,10 @@
-version: "3"
+version: "3.7"
 services:
   justice:
     build: .
+    volumes:
+      - type: bind
+        source: .
+        target: /justice
+    environment:
+      NODE_ENV: development

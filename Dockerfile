@@ -1,4 +1,4 @@
-FROM node:4.2.0-slim
+FROM node:13.7.0-stretch-slim
 
 RUN mkdir /justice
 WORKDIR /justice
@@ -10,4 +10,4 @@ COPY . /justice
 
 EXPOSE 8080
 
-CMD [ "grunt" ]
+CMD [ "bash" ]
