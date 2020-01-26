@@ -93,7 +93,7 @@ module.exports = function(grunt) {
         stderr: true
       },
       logSize: {
-        command: 'echo `git rev-parse --short HEAD && date +"%m/%d/%y %T:%S" && stat -f%z build/justice.min.js && echo "bytes"` >> log/size-log.txt'
+        command: 'echo `git rev-parse --short HEAD && date +"%m/%d/%y %T:%S" && stat -c%s build/justice.min.js && echo "bytes"` >> log/size-log.txt'
       }
     },
 
