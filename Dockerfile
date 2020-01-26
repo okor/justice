@@ -5,6 +5,7 @@ WORKDIR /justice
 
 COPY package*.json ./
 RUN npm install
+RUN npm install grunt-cli -g
 
 COPY . /justice
 
