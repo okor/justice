@@ -3,12 +3,14 @@ Justice.js
 ![ScreenShot](https://i.imgur.com/zKaj6fD.png)
 Justice will create an on page toolbar that displays page timing metrics and a streaming fps meter. Budgets are also supported for timing metrics.
 [> DEMO <](https://okor.github.io/justice/)
-======
+
 
 Budget results are color coded based on budgets:
-  - Over budget:  Red
-  - > 80% budget: Yellow
   - Under budget: Green
+  - \> 80% budget: Yellow
+  - Over budget:  Red
+  
+  
 
 The FPS meter does not support budgets at this time but does color code the spline (or optional dot type) chart, assuming a goal of 60 FPS.
 
@@ -66,11 +68,11 @@ I like to keep an eye on fill size, so you can additionally watch that.
 watch tail log/size-log.txt
 ```
 
+`docker-compose up`
+
 
 ## Contribute
 Pull requests are always welcome. Before you plan a PR, please ensure the values and functionality listed below will be maintained with your PR.
-
-Checkout the to do list: https://waffle.io/okor/justice
 
 #### Core Values:
   - Easily embeddable

@@ -13,6 +13,6 @@ RUN npm install grunt-cli -g
 
 COPY . /justice
 
-EXPOSE 8080
+EXPOSE 35729
 
-CMD [ "bash" ]
+CMD [ "grunt", "watch" ]
