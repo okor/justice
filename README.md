@@ -1,8 +1,8 @@
 Justice.js
 ==================================================
-![ScreenShot](http://i.imgur.com/zKaj6fD.png)
+![ScreenShot](https://i.imgur.com/zKaj6fD.png)
 Justice will create an on page toolbar that displays page timing metrics and a streaming fps meter. Budgets are also supported for timing metrics.
-[> DEMO <](http://okor.github.io/justice/)
+[> DEMO <](https://okor.github.io/justice/)
 ======
 
 Budget results are color coded based on budgets:
