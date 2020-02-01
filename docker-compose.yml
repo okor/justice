@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  justice:
+    build: .
+    ports: 
+      - "35729"
+    volumes:
+      - type: bind
+        source: .
+        target: /justice
+    environment:
+      NODE_ENV: development
